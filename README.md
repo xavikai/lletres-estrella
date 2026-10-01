@@ -1,5 +1,7 @@
 # Lletres Estrella
 
+**Juga-hi:** https://xavikai.github.io/lletres-estrella/
+
 Joc per a tauleta per practicar l'ortografia en català (disortografia), amb una mascota, photocards i minijocs:
 
 - **Ortografia:** Eco (dictat de fitxes), Foto-memòria, Detectiu de famílies, Trucs, Síl·labes boges, Paraules alienígenes (dictat de pseudoparaules)
