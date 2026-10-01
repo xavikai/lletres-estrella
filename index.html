@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#1a1024">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Lletres Estrella">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-512.png">
@@ -508,8 +509,23 @@ function beep(ok){
   }catch(e){}
 }
 let caVoice=null, voicesChecked=false;
-function loadVoices(){try{const vs=speechSynthesis.getVoices();if(vs.length){voicesChecked=true;caVoice=vs.find(v=>/^ca([-_]|$)/i.test(v.lang))||null}}catch(e){}}
-try{loadVoices();speechSynthesis.onvoiceschanged=()=>{loadVoices(); if(G&&G.kind==='eco') renderGame();}}catch(e){}
+function loadVoices(){
+  try{const vs=window.speechSynthesis.getVoices();if(vs.length)voicesChecked=true;caVoice=vs.find(v=>/^ca([-_]|$)/i.test(v.lang))||null}
+  catch(e){voicesChecked=true;caVoice=null}
+}
+function voiceUIChanged(){
+  loadVoices();
+  if(G&&G.kind==='eco')renderGame();
+  else if(!G&&view==='voice')renderVoiceHelp();
+  else if(!G&&view==='parents')renderParents();
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.addEventListener('voiceschanged',voiceUIChanged);
+  setTimeout(()=>{if(!voicesChecked){voicesChecked=true;if(view==='voice')renderVoiceHelp();else if(view==='parents')renderParents()}},1500);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)voiceUIChanged()});
+  window.addEventListener('focus',voiceUIChanged);
+}else voicesChecked=true;
 function say(text,slow){
   try{if(!caVoice) return false;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.voice=caVoice;u.lang=caVoice.lang;u.rate=slow?.55:.85;speechSynthesis.speak(u);return true}catch(e){return false}
 }
@@ -568,6 +584,23 @@ const IC={
 
 /* ============ RENDER SHELL ============ */
 const $view=document.getElementById('view');
+const isAndroid=/Android/i.test(navigator.userAgent);
+const isIPad=/iPad|iPhone|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const isInstalled=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+let installPrompt=null;
+window.addEventListener('beforeinstallprompt',event=>{
+  event.preventDefault();installPrompt=event;
+  if(!G&&(view==='home'||view==='parents'))render();
+});
+window.addEventListener('appinstalled',()=>{installPrompt=null;if(!G&&(view==='home'||view==='parents'))render()});
+if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+function installHTML(){
+  if(isInstalled())return '<p class="small">L’aplicació ja és a la pantalla d’inici.</p>';
+  if(installPrompt)return '<p class="small">Posa el joc a la pantalla d’inici de la tauleta.</p><div><button class="btn menta" data-act="installApp">Instal·la l’aplicació</button></div>';
+  if(isIPad)return '<p class="small">Obre aquesta pàgina amb Safari. Toca <b>Compartir</b> → <b>Afegeix a la pantalla d’inici</b> → <b>Afegeix</b>.</p>';
+  if(isAndroid)return '<p class="small">Obre aquesta pàgina amb Chrome. Toca el menú <b>⋮</b> → <b>Instal·la l’aplicació</b> (o <b>Afegeix a la pantalla d’inici</b>).</p>';
+  return '<p class="small">Fes servir l’opció d’instal·lar o afegir a la pantalla d’inici del navegador.</p>';
+}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2800)}
 function renderChips(){
   const l=level(),inLvl=S.xp%XP_LVL;
@@ -581,7 +614,7 @@ function render(){
   document.getElementById('nav').hidden=!!G;
   document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===view&&!G?'page':'false'));
   if(G) return renderGame();
-  ({home:renderHome,cards:renderCards,closet:renderCloset,parents:renderParents,dict:renderDict,break:renderBreak})[view]();
+  ({home:renderHome,cards:renderCards,closet:renderCloset,parents:renderParents,dict:renderDict,break:renderBreak,voice:renderVoiceHelp})[view]();
   window.scrollTo(0,0);
 }
 
@@ -606,6 +639,7 @@ function renderHome(){
     ${ms==='done'?`<p><b>Assaig fet!</b> Demà hi haurà una photocard nova. Pots continuar jugant a sota.</p>`
       :`<div><button class="btn" data-act="mission">${ms==='new'?'Comença l\'assaig':'Continua l\'assaig'}</button></div>`}
   </section>
+  ${!isInstalled()?`<section class="panel stack"><h3>Instal·la el joc</h3>${installHTML()}</section>`:''}
   <section class="stack" style="gap:10px">
     ${[['o','Ortografia'],['a','Arcade'],['l','Llegir i escriure'],['r','Raonament']].map(([g,t])=>`<h3>${t}</h3>
     <div class="games">${Object.entries(GAMES).filter(([k,x])=>x.g===g).map(([k,x])=>`<button class="game" data-act="play" data-k="${k}"><span class="t">${IC['g_'+k]}${x.name}</span><span class="d">${x.desc}</span></button>`).join('')}</div>`).join('')}
@@ -613,12 +647,34 @@ function renderHome(){
   S.bubble++;
 }
 
+let voiceRequest=null;
+function voiceSetupHTML(){
+  if(isAndroid)return `<p class="small">A Android, obre <a href="https://play.google.com/store/apps/details?id=com.google.android.tts" target="_blank" rel="noopener">Veu de Google a Play Store</a> per instal·lar o actualitzar el motor. Després ves a <b>Configuració → Accessibilitat → Sortida de text a veu → Instal·la dades de veu</b> i tria <b>català</b>. Els noms dels menús poden variar segons la tauleta.</p>`;
+  if(isIPad)return `<p class="small">A l’iPad, ves a <b>Configuració → Accessibilitat → Lectura i veu (o Contingut llegit) → Veus</b> i tria una veu en <b>català</b>. Si cal, toca la icona de descàrrega. <a href="https://support.apple.com/en-gb/111798" target="_blank" rel="noopener">Instruccions d’Apple</a>.</p>`;
+  return '<p class="small">Obre la configuració de veu o de lectura del dispositiu i instal·la una veu en català.</p>';
+}
+function renderVoiceHelp(){
+  const name=voiceRequest?GAMES[voiceRequest[0]].name:'els dictats';
+  $view.innerHTML=`<div class="stack"><div class="gbar"><button class="x" data-act="voiceBack" aria-label="Torna a casa">${IC.x}</button><h2>Veu catalana</h2></div>
+    <section class="panel stack"><h3>${esc(name)}</h3>
+      <p>${caVoice?`Ja detectem la veu <b>${esc(caVoice.name)}</b>. Pots continuar.`:voicesChecked?'Aquest navegador encara no detecta cap veu en català. Instal·la-la al dispositiu per jugar amb dictats de veu.':'Estem buscant les veus del dispositiu…'}</p>
+      ${!caVoice?voiceSetupHTML():''}
+      <div class="speak"><button class="btn menta" data-act="voiceRetry">${caVoice?'Continua el joc':'Ja l’he instal·lada · comprova-ho'}</button>
+      ${voiceRequest&&voiceRequest[0]==='eco'&&!caVoice?'<button class="btn alt" data-act="voiceVisual">Juga mirant les paraules</button>':''}</div>
+      <p class="muted small">La descàrrega de la veu es confirma a la tauleta. Després torna aquí i toca «comprova-ho».</p>
+    </section></div>`;
+}
+
 /* ============ GAME ENGINE ============ */
-function startGame(kind,n,mission){
+function startGame(kind,n,mission,allowVisual=false){
+  if((kind==='eco'||kind==='alien')&&!allowVisual){
+    loadVoices();
+    if(!caVoice){voiceRequest=[kind,n,mission];G=null;view='voice';render();return}
+  }
   if(needBreak()){pendingStart=[kind,n,mission];G=null;view='break';render();return}
   const label=kind;
   let items;
-  if(kind==='alien'){if(!caVoice){toast('Aquest joc necessita la veu catalana de la tauleta. Mira la Zona de pares.');return}items=alienItems(n);kind='eco'}
+  if(kind==='alien'){items=alienItems(n);kind='eco'}
   else if(kind==='logic'){items=logicItems(n)}
   else if(kind==='mira'){items=buildItems('eco',n).map(x=>({...x,mode:'vis'}));kind='eco'}
   else if(kind==='eco'){items=buildItems('eco',n).map((x,i)=>mission&&i%2?{...x,mode:'vis'}:x);if(mission&&caVoice)items[items.length-1]=alienItems(1)[0]}
@@ -923,7 +979,9 @@ function renderParents(){
         ${rows.map(e=>`<tr><td class="w">${esc(e.w)}</td><td class="small">${esc(e.pista||'')}</td><td><div class="boxes">${[1,2,3,4,5].map(b=>`<i class="${b<=e.box?'on':''}"></i>`).join('')}</div></td><td class="small">${e.due<=t?'<b>Avui</b>':esc(e.due.split('-').reverse().slice(0,2).join('/'))}</td><td><button class="small muted" data-act="delw" data-w="${esc(e.w)}" style="text-decoration:underline">Treu</button></td></tr>`).join('')}
       </tbody></table></div>`:`<p class="muted">Encara no hi ha paraules. Quan en falli alguna al joc s'hi afegirà sola, i també en pots afegir tu.</p>`}
     </section>
-    <section class="panel stack"><h3>Veu</h3><p class="small">${caVoice?`Veu en català: <b>${esc(caVoice.name)}</b>.`:(voicesChecked?'Aquest dispositiu no té veu en català. A Android: Configuració › Accessibilitat › Síntesi de veu › instal·la el català. Mentrestant, el joc Eco ensenya la paraula uns segons.':'Buscant veus…')}</p>
+    <section class="panel stack"><h3>Instal·lació</h3>${installHTML()}</section>
+    <section class="panel stack"><h3>Veu</h3><p class="small">${caVoice?`Veu en català detectada: <b>${esc(caVoice.name)}</b>.`:(voicesChecked?'Aquest navegador encara no detecta una veu en català. Els jocs de dictat t’ajudaran a instal·lar-la.':'Buscant veus…')}</p>
+      ${caVoice?'':voiceSetupHTML()}
       <div><button class="btn alt" data-act="testVoice" ${caVoice?'':'disabled'}>${IC.speaker}Prova la veu</button></div></section>
     ${STANDALONE?`<section class="panel stack"><h3>Còpia de seguretat</h3><p class="small muted">El progrés es guarda només en aquest navegador. Desa'n una còpia de tant en tant, o passa-la a un altre dispositiu.</p>
       <div class="speak" style="justify-content:flex-start"><button class="btn alt" data-act="exportState">Desa una còpia</button><label class="btn alt" for="importFile" style="color:var(--fg);font-size:19px">Recupera una còpia<input type="file" id="importFile" accept="application/json" hidden></label></div></section>`:''}
@@ -1477,9 +1535,23 @@ function handle2(a,b){
 }
 /* ============ EVENTS ============ */
 document.addEventListener('click',e=>{
-  const nb=e.target.closest('[data-go]'); if(nb){stopGame();G=null;view=nb.dataset.go;G_reset=false;dictEdit=null;dictDraft=null;render();return}
+  const nb=e.target.closest('[data-go]'); if(nb){stopGame();G=null;voiceRequest=null;view=nb.dataset.go;G_reset=false;dictEdit=null;dictDraft=null;render();return}
   const b=e.target.closest('[data-act]'); if(!b||b.disabled) return;
   const a=b.dataset.act;
+  if(a==='installApp'){
+    if(installPrompt){const prompt=installPrompt;installPrompt=null;prompt.prompt();prompt.userChoice.then(()=>{if(!G&&(view==='home'||view==='parents'))render()}).catch(()=>{});}
+    return;
+  }
+  if(a==='voiceBack'){voiceRequest=null;view='home';render();return}
+  if(a==='voiceRetry'){
+    loadVoices();
+    if(caVoice&&voiceRequest){const p=voiceRequest;voiceRequest=null;view='home';startGame(...p)}
+    else{renderVoiceHelp();toast('Encara no detectem la veu catalana. Revisa la configuració i torna-ho a provar.')}
+    return;
+  }
+  if(a==='voiceVisual'&&voiceRequest&&voiceRequest[0]==='eco'){
+    const p=voiceRequest;voiceRequest=null;view='home';startGame(...p,true);return;
+  }
   if(a==='mission'){const t=TODAY();if(S.missionStepDay!==t){S.missionStep=0;S.missionStepDay=t}
     if(S.missionDay===t){G=null;render();return}
     const m=missionFor(t)[S.missionStep];startGame(m[0],m[1],true);return}
