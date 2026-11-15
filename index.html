@@ -236,6 +236,38 @@ label{font-weight:700;font-size:15px;color:var(--muted);display:flex;flex-direct
 .bal.q{border:2px dashed var(--rosa)}
 .pan{min-height:56px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;font-size:30px;line-height:1.1;background:var(--card2);border-radius:14px;padding:6px;letter-spacing:2px}
 .beam{display:grid;place-items:center;font-family:var(--display);font-size:30px;color:var(--groc)}
+/* subject tabs & unit banners */
+.subjs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.subjs::-webkit-scrollbar{display:none}
+.sbtn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--card);border:2px solid var(--line);font-family:var(--display);font-weight:800;font-size:17px;white-space:nowrap;color:var(--muted);transition:transform .08s,background .15s,border-color .15s}
+.sbtn:active{transform:translateY(2px)}
+.sbtn.on{color:var(--ink);border-color:transparent;box-shadow:0 4px 0 #0005}
+.sbtn[data-s="tots"].on{background:linear-gradient(135deg,var(--lila),var(--rosa))}
+.sbtn[data-s="es"].on{background:var(--rosa)}
+.sbtn[data-s="ca"].on{background:var(--lila)}
+.sbtn[data-s="mat"].on{background:var(--menta)}
+.sbtn[data-s="en"].on{background:var(--groc)}
+.mpills{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.mpill{padding:5px 12px;border-radius:999px;font-size:14px;font-weight:800;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
+.mpill.on{background:var(--fg);color:var(--ink);border-color:var(--fg)}
+.ubox{background:linear-gradient(135deg,#3d1c47,#261638);border:1px solid var(--rosa);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.ubox.ca{background:linear-gradient(135deg,#311d4a,#231533);border-color:var(--lila)}
+.ubox.mat{background:linear-gradient(135deg,#193b37,#1f1631);border-color:var(--menta)}
+.ubox.en{background:linear-gradient(135deg,#3f311b,#231533);border-color:var(--groc)}
+.utag{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;background:var(--rosa);color:var(--ink)}
+.ubox.ca .utag{background:var(--lila)}
+.ubox.mat .utag{background:var(--menta)}
+.ubox.en .utag{background:var(--groc)}
+.opt.wopt{font-size:22px;min-height:66px;height:auto;padding:12px 18px;max-width:100%;line-height:1.25;text-align:center}
+.opt.sopt{font-family:var(--body);font-size:19px;font-weight:700;min-height:64px;height:auto;padding:12px 18px;width:100%;max-width:580px;text-align:left;display:flex;align-items:center;gap:10px;line-height:1.3}
+.badw{color:var(--ink);background:var(--coral);padding:2px 8px;border-radius:8px;text-decoration:line-through;text-decoration-thickness:2px;margin:0 2px;display:inline-block}
+.goodw{color:var(--ink);background:var(--menta);padding:2px 8px;border-radius:8px;margin:0 2px;display:inline-block}
+.vtag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);font-size:16px;font-weight:700}
+.defbox{background:var(--bg2);border:2px dashed var(--lila);border-radius:18px;padding:14px 18px;max-width:600px;width:100%;font-size:22px;line-height:1.5;text-align:left}
+.defbox b{color:var(--menta)}
+.defbox .step{color:var(--rosa);border-bottom:3px dotted var(--rosa)}
+.cheat{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:14px;text-align:left;max-width:600px;width:100%;font-size:16px;display:flex;flex-direction:column;gap:8px}
+.cheat b{color:var(--groc)}
 @media (prefers-reduced-motion:reduce){.dance{animation:none}}
 @media (prefers-reduced-motion:reduce){.bob,.jump,.pc.rare::after{animation:none}}
 </style>
@@ -365,22 +397,30 @@ const TALLA_BANK = [
 ];
 
 const CATS = {
-  eco:{name:'Dictat de fitxes',color:'var(--lila)'},
-  ava:{name:'b/v · truc -ava',color:'var(--rosa)'},
-  ia:{name:'i / ll · truc -ia',color:'var(--menta)'},
-  mp:{name:'m davant de p/b',color:'var(--groc)'},
-  vocals:{name:'Vocals febles · família',color:'var(--lila)'},
-  final:{name:'Lletra final muda · família',color:'var(--coral)'},
-  talla:{name:'Unir i separar paraules',color:'var(--menta)'},
-  sil:{name:'Ordre de síl·labes (inversions)',color:'var(--groc)'},
-  punts:{name:'Punts i majúscules',color:'var(--rosa)'},
-  cursa:{name:'Reconèixer paraules ben escrites',color:'var(--lila)'},
-  conq:{name:'Trucs a la Conquesta',color:'var(--coral)'},
-  kara:{name:'Comprensió del karaoke',color:'var(--menta)'},
-  alien:{name:'Dictat de pseudoparaules',color:'var(--rosa)'},
-  serie:{name:'Sèries (raonament)',color:'var(--lila)'},
-  matriu:{name:'Matrius (raonament)',color:'var(--groc)'},
-  balanca:{name:'Balances (raonament)',color:'var(--menta)'}
+  es_dip:{name:'Castellà · Diptongos e hiatos',color:'var(--rosa)',subj:'es'},
+  es_hip:{name:'Castellà · Hiperónimos e hipónimos',color:'var(--lila)',subj:'es'},
+  es_prec:{name:'Castellà · Precisión léxica (sin «cosa»)',color:'var(--menta)',subj:'es'},
+  es_def:{name:'Castellà · Redactar definiciones',color:'var(--groc)',subj:'es'},
+  es_ora:{name:'Castellà · La oración y sus tipos',color:'var(--coral)',subj:'es'},
+  eco:{name:'Català · Dictat de fitxes',color:'var(--lila)',subj:'ca'},
+  ava:{name:'Català · b/v (truc -ava)',color:'var(--rosa)',subj:'ca'},
+  ia:{name:'Català · i / ll (truc -ia)',color:'var(--menta)',subj:'ca'},
+  mp:{name:'Català · m davant de p/b',color:'var(--groc)',subj:'ca'},
+  vocals:{name:'Català · Vocals febles (família)',color:'var(--lila)',subj:'ca'},
+  final:{name:'Català · Lletra final muda',color:'var(--coral)',subj:'ca'},
+  digrafs:{name:'Català · Caça-dígrafs (rr, ss, ll, ny, tx, ig...)',color:'var(--menta)',subj:'ca'},
+  talla:{name:'Català · Unir i separar paraules',color:'var(--menta)',subj:'ca'},
+  sil:{name:'Català · Ordre de síl·labes',color:'var(--groc)',subj:'ca'},
+  punts:{name:'Català · Punts i majúscules',color:'var(--rosa)',subj:'ca'},
+  cursa:{name:'Català · Cursa de lletres',color:'var(--lila)',subj:'ca'},
+  conq:{name:'Català · Conquesta lila',color:'var(--coral)',subj:'ca'},
+  kara:{name:'Català · Comprensió del karaoke',color:'var(--menta)',subj:'ca'},
+  alien:{name:'Català · Dictat de pseudoparaules',color:'var(--rosa)',subj:'ca'},
+  mates:{name:'Mates · Càlcul i reptes',color:'var(--menta)',subj:'mat'},
+  serie:{name:'Mates · Sèries (raonament)',color:'var(--lila)',subj:'mat'},
+  matriu:{name:'Mates · Matrius (raonament)',color:'var(--groc)',subj:'mat'},
+  balanca:{name:'Mates · Balances (equivalències)',color:'var(--menta)',subj:'mat'},
+  angles:{name:'Anglès · Star English',color:'var(--groc)',subj:'en'}
 };
 
 const ACCS = [
@@ -404,24 +444,36 @@ const PCARDS = [
 ];
 
 const GAMES = {
-  eco:{g:'o',name:'Eco',desc:'Escolta la paraula i construeix-la amb fitxes.'},
-  mira:{g:'o',name:'Foto-memòria',desc:'Mira la paraula, fes-li una foto amb els ulls i escriu-la.'},
-  det:{g:'o',name:'Detectiu de famílies',desc:'Troba la lletra que falta amb una paraula germana.'},
-  truc:{g:'o',name:'Trucs',desc:'Aprèn un truc i fes-lo servir en frases.'},
-  alien:{g:'o',name:'Paraules alienígenes',desc:'Un planeta envia paraules inventades. Escriu-les tal com sonen.'},
-  sil:{g:'o',name:'Síl·labes boges',desc:'Ordena les síl·labes. N\'hi ha una de girada!'},
-  cursa:{g:'a',name:'Cursa de lletres',desc:'Corre i passa per la porta de la paraula ben escrita.'},
-  conq:{g:'a',name:'Conquesta lila',desc:'Pinta el mapa del teu color i caça les lletres correctes.'},
-  logic:{g:'r',name:'Laboratori de patrons',desc:'Sèries, graelles i balances: descobreix la regla.'},
-  kara:{g:'l',name:'Karaoke lector',desc:'Llegeix la cançó seguint la llum, cada dia amb més ritme.'},
-  talla:{g:'l',name:'Talla-frases',desc:'Separa les paraules que s\'han enganxat.'},
-  punts:{g:'l',name:'Posa els punts',desc:'Separa les idees amb punts i majúscules.'}
+  /* CASTELLÀ · Unidad 2 + repàs de nivell */
+  es_dip:{g:'es',subj:'es',unit:'Unidad 2 · Ortografía',name:'Diptongos e hiatos',desc:'¿Juntas o separadas? Clasifica las vocales y separa en sílabas.'},
+  es_hip:{g:'es',subj:'es',unit:'Unidad 2 · Léxico',name:'Cajas de hiperónimos',desc:'Une cada palabra con su hiperónimo, busca hipónimos y caza al intruso.'},
+  es_prec:{g:'es',subj:'es',unit:'Unidad 2 · Léxico',name:'¡Fuera la palabra «cosa»!',desc:'Sustituye «cosa», «hacer» o «decir» por palabras mucho más precisas.'},
+  es_def:{g:'es',subj:'es',unit:'Unidad 2 · Léxico',name:'Taller de definiciones',desc:'Crea definiciones exactas: 1.º el hiperónimo y 2.º sus características.'},
+  es_ora:{g:'es',subj:'es',unit:'Unidad 2 · Gramática',name:'Radar de oraciones',desc:'¿Frase u oración? Caza el verbo y descubre la intención de cada oración.'},
+  /* CATALÀ */
+  eco:{g:'o',subj:'ca',name:'Eco',desc:'Escolta la paraula i construeix-la amb fitxes.'},
+  mira:{g:'o',subj:'ca',name:'Foto-memòria',desc:'Mira la paraula, fes-li una foto amb els ulls i escriu-la.'},
+  det:{g:'o',subj:'ca',name:'Detectiu de famílies',desc:'Troba la lletra que falta amb una paraula germana.'},
+  truc:{g:'o',subj:'ca',name:'Trucs',desc:'Aprèn un truc i fes-lo servir en frases.'},
+  digrafs:{g:'o',subj:'ca',name:'Caça-dígrafs',desc:'Detecta i completa els dígrafs (rr, ss, ll, ny, qu, gu, tx, ig).'},
+  alien:{g:'o',subj:'ca',name:'Paraules alienígenes',desc:'Un planeta envia paraules inventades. Escriu-les tal com sonen.'},
+  sil:{g:'o',subj:'ca',name:'Síl·labes boges',desc:'Ordena les síl·labes. N\'hi ha una de girada!'},
+  cursa:{g:'a',subj:'ca',name:'Cursa de lletres',desc:'Corre i passa per la porta de la paraula ben escrita.'},
+  conq:{g:'a',subj:'ca',name:'Conquesta lila',desc:'Pinta el mapa del teu color i caça les lletres correctes.'},
+  kara:{g:'l',subj:'ca',name:'Karaoke lector',desc:'Llegeix la cançó seguint la llum, cada dia amb més ritme.'},
+  talla:{g:'l',subj:'ca',name:'Talla-frases',desc:'Separa les paraules que s\'han enganxat.'},
+  punts:{g:'l',subj:'ca',name:'Posa els punts',desc:'Separa les idees amb punts i majúscules.'},
+  /* MATEMÀTIQUES */
+  mates:{g:'m',subj:'mat',name:'Mates Estrella',desc:'Càlcul mental, números misteriosos i reptes de problemes.'},
+  logic:{g:'r',subj:'mat',name:'Laboratori de patrons',desc:'Sèries, graelles i balances: descobreix la regla.'},
+  /* ANGLÈS */
+  angles:{g:'en',subj:'en',name:'Star English',desc:'Vocabulary & Sentence Builder: practica vocabulari i frases en anglès.'}
 };
 const MISSION_LEN=4;
 
 /* ============ STATE ============ */
 const KEY='lletres-estrella-v1';
-const DEF=()=>({v:1,updated:0,name:'Mochi',xp:0,stars:0,streak:0,lastDay:null,jokers:1,cards:[],owned:[],wearing:[],stats:{},llibreta:[],missionDay:null,missionStep:0,bubble:0});
+const DEF=()=>({v:1,updated:0,name:'Mochi',xp:0,stars:0,streak:0,lastDay:null,jokers:1,cards:[],owned:[],wearing:[],stats:{},llibreta:[],missionDay:null,missionStep:0,missionSubj:'es',subjTab:'tots',bubble:0});
 let S=DEF();
 try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(DEF(),JSON.parse(raw));}catch(e){}
 let DOC=null, syncMode='local', view='home', G=null;
@@ -508,10 +560,15 @@ function beep(ok){
       g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+i*.09+.22);o.connect(g).connect(AC.destination);o.start(AC.currentTime+i*.09);o.stop(AC.currentTime+i*.09+.25)});
   }catch(e){}
 }
-let caVoice=null, voicesChecked=false;
+let caVoice=null, esVoice=null, enVoice=null, voicesChecked=false;
 function loadVoices(){
-  try{const vs=window.speechSynthesis.getVoices();if(vs.length)voicesChecked=true;caVoice=vs.find(v=>/^ca([-_]|$)/i.test(v.lang))||null}
-  catch(e){voicesChecked=true;caVoice=null}
+  try{
+    const vs=window.speechSynthesis.getVoices();
+    if(vs.length)voicesChecked=true;
+    caVoice=vs.find(v=>/^ca([-_]|$)/i.test(v.lang))||null;
+    esVoice=vs.find(v=>/^es[-_](ES|MX|US)/i.test(v.lang))||vs.find(v=>/^es([-_]|$)/i.test(v.lang))||null;
+    enVoice=vs.find(v=>/^en[-_](GB|US)/i.test(v.lang))||vs.find(v=>/^en([-_]|$)/i.test(v.lang))||null;
+  }catch(e){voicesChecked=true;caVoice=null;esVoice=null;enVoice=null}
 }
 function voiceUIChanged(){
   loadVoices();
@@ -528,6 +585,18 @@ if('speechSynthesis' in window){
 }else voicesChecked=true;
 function say(text,slow){
   try{if(!caVoice) return false;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.voice=caVoice;u.lang=caVoice.lang;u.rate=slow?.55:.85;speechSynthesis.speak(u);return true}catch(e){return false}
+}
+function sayLang(text,lang,slow){
+  try{
+    loadVoices();
+    const v=lang==='es'?esVoice:lang==='en'?enVoice:caVoice;
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    if(v){u.voice=v;u.lang=v.lang}else{u.lang=lang==='es'?'es-ES':lang==='en'?'en-GB':'ca-ES'}
+    u.rate=slow?.6:.88;
+    speechSynthesis.speak(u);
+    return true;
+  }catch(e){return false}
 }
 
 /* ============ MASCOT SVG ============ */
@@ -571,6 +640,7 @@ const IC={
   g_eco:`<svg viewBox="0 0 24 24" fill="none" stroke="#c9a7ff" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>`,
   g_det:`<svg viewBox="0 0 24 24" fill="none" stroke="#7ff0c9" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>`,
   g_truc:`<svg viewBox="0 0 24 24"><path d="${starPath(12,12,10,4.5,4)}" fill="#ff74b8"/></svg>`,
+  g_digrafs:`<svg viewBox="0 0 24 24" fill="none" stroke="#7ff0c9" stroke-width="2.4" stroke-linecap="round"><rect x="3" y="5" width="8" height="14" rx="2"/><rect x="13" y="5" width="8" height="14" rx="2"/><path d="M9 12h6" stroke="#ff74b8" stroke-width="3"/></svg>`,
   g_mira:`<svg viewBox="0 0 24 24" fill="none" stroke="#ff74b8" stroke-width="2.4" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>`,
   g_sil:`<svg viewBox="0 0 24 24" fill="none" stroke="#ffd66b" stroke-width="2.4" stroke-linejoin="round"><rect x="2.5" y="8" width="8" height="8" rx="2"/><rect x="13.5" y="8" width="8" height="8" rx="2"/><path d="M8 5c2-2 6-2 8 0M16 19c-2 2-6 2-8 0" stroke-linecap="round"/></svg>`,
   g_cursa:`<svg viewBox="0 0 24 24" fill="none" stroke="#7ff0c9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21L9 3M19 21L15 3M12 5v2M12 11v2M12 17v2"/></svg>`,
@@ -579,7 +649,14 @@ const IC={
   g_punts:`<svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3" fill="#ff74b8"/><path d="M11 17h10M11 7h10M3 7h5" stroke="#c9a7ff" stroke-width="2.4" stroke-linecap="round"/></svg>`,
   g_alien:`<svg viewBox="0 0 24 24" fill="none" stroke="#7ff0c9" stroke-width="2.2" stroke-linecap="round"><ellipse cx="12" cy="14" rx="9" ry="3.5"/><path d="M7 12.5a5 5 0 0 1 10 0"/><path d="M12 7.5V4M10.5 3.5h3"/></svg>`,
   g_logic:`<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="#c9a7ff"/><circle cx="17.5" cy="6.5" r="3.5" fill="#ff74b8"/><path d="M6.5 14l3.5 6h-7z" fill="#ffd66b"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="#7ff0c9" stroke-width="2" stroke-dasharray="2.5 2"/></svg>`,
-  g_talla:`<svg viewBox="0 0 24 24" fill="none" stroke="#ffd66b" stroke-width="2.4" stroke-linecap="round"><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8 16L19 3M16 16L5 3"/></svg>`
+  g_talla:`<svg viewBox="0 0 24 24" fill="none" stroke="#ffd66b" stroke-width="2.4" stroke-linecap="round"><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8 16L19 3M16 16L5 3"/></svg>`,
+  g_es_dip:`<svg viewBox="0 0 24 24" fill="none" stroke="#ff74b8" stroke-width="2.4" stroke-linecap="round"><circle cx="7.5" cy="12" r="4.5"/><circle cx="16.5" cy="12" r="4.5"/><path d="M12 4v16" stroke="#ffd66b" stroke-dasharray="3 3"/></svg>`,
+  g_es_hip:`<svg viewBox="0 0 24 24" fill="none" stroke="#c9a7ff" stroke-width="2.3" stroke-linejoin="round"><path d="M3 9l9-5 9 5v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 9l9 5 9-5M12 14v7"/></svg>`,
+  g_es_prec:`<svg viewBox="0 0 24 24" fill="none" stroke="#7ff0c9" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4" fill="#ff74b8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>`,
+  g_es_def:`<svg viewBox="0 0 24 24" fill="none" stroke="#ffd66b" stroke-width="2.3" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M8 11h8M8 15h6" stroke-linecap="round"/></svg>`,
+  g_es_ora:`<svg viewBox="0 0 24 24" fill="none" stroke="#ff9a8a" stroke-width="2.3" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6.5A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01" stroke-width="3" stroke-linecap="round"/></svg>`,
+  g_mates:`<svg viewBox="0 0 24 24" fill="none" stroke="#7ff0c9" stroke-width="2.4" stroke-linecap="round"><path d="M5 8h6M8 5v6M14 8h5M5 17l5-5M10 17l-5-5M14 15h5M14 18h5"/></svg>`,
+  g_angles:`<svg viewBox="0 0 24 24" fill="none" stroke="#ffd66b" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>`
 };
 
 /* ============ RENDER SHELL ============ */
@@ -620,9 +697,51 @@ function render(){
 
 const BUBBLES=['Avui toca brillar!','Preparada per l\'assaig?','Cada paraula és un pas de ball.','Els errors també ensenyen.','Vinga, que el públic espera!','Tu revises, jo aplaudeixo.'];
 function missionState(){ const t=TODAY(); if(S.missionDay===t) return 'done'; return S.missionStep>0&&S.missionStepDay===t?'progress':'new'; }
+function gameCardHTML(k){
+  const x=GAMES[k];
+  return `<button class="game" data-act="play" data-k="${k}"><span class="t">${IC['g_'+k]||IC.star}${x.name}</span><span class="d">${x.desc}</span></button>`;
+}
+function subjBlocksHTML(tab){
+  const out=[];
+  if(tab==='tots'||tab==='es'){
+    out.push(`<div class="ubox">
+      <span class="utag">🩷 Castellà · Unidad 2 (Barcanova) + Reptes de nivell</span>
+      <div><h3>Reflexión sobre la lengua: Ortografía, Léxico y Gramática</h3>
+      <p class="muted small">Practica els continguts del tema (diptongos e hiatos, hiperónimos, evitar la paraula «cosa», definicions i tipus d'oracions) amb la Mochi!</p></div>
+      <div class="games">${['es_dip','es_hip','es_prec','es_def','es_ora'].map(gameCardHTML).join('')}</div>
+    </div>`);
+  }
+  if(tab==='tots'||tab==='ca'){
+    out.push(`<div class="ubox ca">
+      <span class="utag">🟣 Català · Ortografia, Dígrafs i Lectura</span>
+      <div><h3>Ortografia i vocabulari</h3></div>
+      <div class="games">${['digrafs','eco','mira','det','truc','sil','alien'].map(gameCardHTML).join('')}</div>
+      <div style="margin-top:6px"><h3>Llegir, escriure i Arcade</h3></div>
+      <div class="games">${['kara','talla','punts','cursa','conq'].map(gameCardHTML).join('')}</div>
+    </div>`);
+  }
+  if(tab==='tots'||tab==='mat'){
+    out.push(`<div class="ubox mat">
+      <span class="utag">🟢 Matemàtiques i Lògica</span>
+      <div><h3>Càlcul mental, problemes i raonament</h3></div>
+      <div class="games">${['mates','logic'].map(gameCardHTML).join('')}</div>
+    </div>`);
+  }
+  if(tab==='tots'||tab==='en'){
+    out.push(`<div class="ubox en">
+      <span class="utag">🟡 Anglès · English Time</span>
+      <div><h3>Vocabulari i frases en anglès</h3></div>
+      <div class="games">${['angles'].map(gameCardHTML).join('')}</div>
+    </div>`);
+  }
+  return out.join('');
+}
 function renderHome(){
   const ms=missionState(), step=ms==='new'?0:ms==='done'?MISSION_LEN:S.missionStep;
   const inLvl=S.xp%XP_LVL;
+  const mSubj=S.missionSubj||'es';
+  const curTab=S.subjTab||'tots';
+  const mPlan=missionFor(TODAY(),mSubj);
   $view.innerHTML=`<div class="stack">
   <section class="hero">
     <div class="mascot bob" id="homeMascot">${mascotSVG({st:stage(),wear:S.wearing})}</div>
@@ -634,15 +753,26 @@ function renderHome(){
     </div>
   </section>
   <section class="panel mission stack">
-    <div><h3>Assaig d'avui</h3><p class="muted">Avui: ${missionFor(TODAY()).map(m=>GAMES[m[0]].name).join(' · ')}</p><p class="muted small">Uns 10 minuts · premi: una photocard i 25 estrelles</p></div>
-    <div class="dots">${missionFor(TODAY()).map((m,i)=>`<span class="${i<step?'on':''}" title="${GAMES[m[0]].name}"></span>`).join('')}</div>
-    ${ms==='done'?`<p><b>Assaig fet!</b> Demà hi haurà una photocard nova. Pots continuar jugant a sota.</p>`
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <h3>Assaig d'avui</h3>
+        <div class="mpills" aria-label="Tria la matèria de l'assaig">
+          ${[['es','🩷 Castellà'],['ca','🟣 Català'],['mat','🟢 Mates'],['en','🟡 Anglès'],['mix','✨ Variat']].map(([k,lbl])=>`<button class="mpill ${mSubj===k?'on':''}" data-act="setMissionSubj" data-s="${k}">${lbl}</button>`).join('')}
+        </div>
+      </div>
+      <p class="muted" style="margin-top:6px">Avui: ${mPlan.map(m=>GAMES[m[0]].name).join(' · ')}</p>
+      <p class="muted small">4 reptes curts · premi: una photocard i 25 estrelles</p>
+    </div>
+    <div class="dots">${mPlan.map((m,i)=>`<span class="${i<step?'on':''}" title="${GAMES[m[0]].name}"></span>`).join('')}</div>
+    ${ms==='done'?`<p><b>Assaig fet!</b> Demà hi haurà una photocard nova. Pots continuar jugant a qualsevol assignatura a sota.</p>`
       :`<div><button class="btn" data-act="mission">${ms==='new'?'Comença l\'assaig':'Continua l\'assaig'}</button></div>`}
   </section>
   ${!isInstalled()?`<section class="panel stack"><h3>Instal·la el joc</h3>${installHTML()}</section>`:''}
-  <section class="stack" style="gap:10px">
-    ${[['o','Ortografia'],['a','Arcade'],['l','Llegir i escriure'],['r','Raonament']].map(([g,t])=>`<h3>${t}</h3>
-    <div class="games">${Object.entries(GAMES).filter(([k,x])=>x.g===g).map(([k,x])=>`<button class="game" data-act="play" data-k="${k}"><span class="t">${IC['g_'+k]}${x.name}</span><span class="d">${x.desc}</span></button>`).join('')}</div>`).join('')}
+  <section class="stack" style="gap:14px">
+    <div class="subjs" role="tablist" aria-label="Temàtiques">
+      ${[['tots','✨ Totes les matèries'],['es','🩷 Castellà'],['ca','🟣 Català'],['mat','🟢 Matemàtiques'],['en','🟡 Anglès']].map(([k,lbl])=>`<button class="sbtn ${curTab===k?'on':''}" data-act="subjTab" data-s="${k}" role="tab" aria-selected="${curTab===k}">${lbl}</button>`).join('')}
+    </div>
+    ${subjBlocksHTML(curTab)}
   </section></div>`;
   S.bubble++;
 }
@@ -707,6 +837,14 @@ function buildItems(kind,n){
   if(kind==='punts') return shuffle(PUNTS_BANK).slice(0,n).map(sents=>({sents}));
   if(kind==='kara'){const K=karaState();const ss=SONGS.slice().sort((a,b)=>(K.best[a.id]||0)-(K.best[b.id]||0));return [ss[Math.random()*2|0]]}
   if(kind==='cursa'||kind==='conq') return [{}];
+  if(kind==='es_dip') return buildEsDip(n);
+  if(kind==='es_hip') return buildEsHip(n);
+  if(kind==='es_prec') return shuffle(ES_PREC_BANK).slice(0,n);
+  if(kind==='es_def') return shuffle(ES_DEF_BANK).slice(0,n);
+  if(kind==='es_ora') return buildEsOra(n);
+  if(kind==='digrafs') return shuffle(DIGRAFS_BANK).slice(0,n);
+  if(kind==='mates') return buildMates(n);
+  if(kind==='angles') return shuffle(ANGLES_BANK).slice(0,n);
 }
 function stopGame(){if(G&&G.cleanup)G.cleanup();if(G)G.stop=true}
 function exitGame(){stopGame();G=null;render()}
@@ -755,7 +893,16 @@ function renderGame(){
   if(G.kind==='punts') body=puntsHTML();
   if(G.kind==='kara') body=karaHTML();
   if(G.kind==='logic') body=logicHTML();
-  $view.innerHTML=`<div class="stack">${head}<p class="muted" style="font-weight:800">${GAMES[G.items[G.i]&&G.items[G.i].mode==='vis'?'mira':G.items[G.i]&&G.items[G.i].mode==='alien'?'alien':G.label].name}${G.mission?` · Assaig ${S.missionStepDay===TODAY()?S.missionStep+1:1}/4`:''}</p>${body}</div>`;
+  if(G.kind==='es_dip') body=esDipHTML();
+  if(G.kind==='es_hip') body=esHipHTML();
+  if(G.kind==='es_prec') body=esPrecHTML();
+  if(G.kind==='es_def') body=esDefHTML();
+  if(G.kind==='es_ora') body=esOraHTML();
+  if(G.kind==='digrafs') body=digrafsHTML();
+  if(G.kind==='mates') body=matesHTML();
+  if(G.kind==='angles') body=anglesHTML();
+  const gInfo=GAMES[G.items[G.i]&&G.items[G.i].mode==='vis'?'mira':G.items[G.i]&&G.items[G.i].mode==='alien'?'alien':G.label];
+  $view.innerHTML=`<div class="stack">${head}<p class="muted" style="font-weight:800">${gInfo.unit?`<span style="color:var(--rosa)">${esc(gInfo.unit)}</span> · `:''}${gInfo.name}${G.mission?` · Assaig ${S.missionStepDay===TODAY()?S.missionStep+1:1}/4`:''}</p>${body}</div>`;
 }
 function renderSummary(){
   const c=G.card, nw=G.newWords;
@@ -926,12 +1073,22 @@ function pcHTML(c,owned){
 }
 function renderCards(){
   const have=PCARDS.filter(c=>S.cards.includes(c.id)).length;
-  const rk=Object.keys(RULES).concat(['vocals','final']);
-  const ruleInfo={ava:RULES.ava,ia:RULES.ia,mp:RULES.mp,vocals:{name:'Truc família',title:'Si una vocal no sona clara, busca una paraula germana',ex:'lloc → localitzar'},final:{name:'Truc lletra muda',title:'Si el final no sona, allarga la paraula',ex:'gent → gentada'}};
+  const rk=['es_dip','es_hip','es_prec','es_def','es_ora'].concat(Object.keys(RULES),['vocals','final','digrafs']);
+  const ruleInfo={
+    es_dip:{name:'Castellà · Diptongo e hiato',title:'Vocales fuertes (a,e,o) se separan; débiles con tilde (í,ú) rompen el diptongo',ex:'ai·re · ca·o·ba · rus·ga·lí·a'},
+    es_hip:{name:'Castellà · Hiperónimos',title:'El hiperónimo es la palabra paraguas que engloba a los hipónimos',ex:'árbol → pino, roble · máquina → telar'},
+    es_prec:{name:'Castellà · Precisión léxica',title:'Evita palabras comodín (cosa, hacer, decir) y usa palabras precisas',ex:'cosa → libreta, joya, bandolera, setas'},
+    es_def:{name:'Castellà · La definición',title:'1.º Empieza por el hiperónimo + 2.º Características propias',ex:'Brújula: instrumento que sirve para orientarse'},
+    es_ora:{name:'Castellà · La oración',title:'Toda oración tiene un verbo. Según su intención: declarativa, interrogativa, exclamativa, imperativa o dubitativa',ex:'¡Qué guay! (frase) · Alumbrad el suelo (oración)'},
+    ava:RULES.ava,ia:RULES.ia,mp:RULES.mp,
+    vocals:{name:'Truc família',title:'Si una vocal no sona clara, busca una paraula germana',ex:'lloc → localitzar'},
+    final:{name:'Truc lletra muda',title:'Si el final no sona, allarga la paraula',ex:'gent → gentada'},
+    digrafs:{name:'Truc dígrafs',title:'Dues lletres que fan un sol so: rr, ss, ll, ny, qu, gu, tx, ig',ex:'terrassa · granota · pinzell · església'}
+  };
   $view.innerHTML=`<div class="stack">
     <div><h2>Photocards</h2><p class="muted">${have} de ${PCARDS.length}. Guanya'n una cada dia que acabis l'assaig, o obre un sobre al vestidor.</p></div>
     <div class="cards">${PCARDS.map(c=>pcHTML(c,S.cards.includes(c.id))).join('')}</div>
-    <div><h2>Cartes de truc</h2><p class="muted">S'activen quan encertes 10 vegades fent servir el truc.</p></div>
+    <div><h2>Cartes de truc i resum</h2><p class="muted">Les teves xuletes estrella! S'activen quan encertes 10 vegades cada tema.</p></div>
     <div class="cards">${rk.map(k=>{const s=S.stats[k]||{ok:0};const on=s.ok>=10;const R=ruleInfo[k];
       return `<div class="rule-pc ${on?'on':''}"><span class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.6px">${R.name}</span><b>${R.title}</b><span style="font-family:var(--tile)">${R.ex}</span><span class="small">${on?'Activada':`${Math.min(s.ok,10)} / 10`}</span></div>`}).join('')}</div>
   </div>`;
@@ -1040,10 +1197,24 @@ const EMOJIS = ['✌️','🐝','🅱️','🎵','🎤','🎧','⭐','🌙','�
 const BREAKS = ['Aixeca\'t i fes 10 salts, com al final d\'una coreografia.','Estira els braços cap al sostre i compta fins a 10 ben a poc a poc.','Balla la teva cançó preferida mentre comptes fins a 30.','Ves a beure un got d\'aigua i torna caminant de puntetes.','Fes 5 girs de cap molt lents a cada costat.'];
 
 /* ============ PHASE 2 · HELPERS ============ */
-function missionFor(day){
+function missionFor(day,subj){
   let h=0; for(const c of day) h=(h*31+c.charCodeAt(0))>>>0;
-  const third=['talla','punts','kara'][(h>>4)%3];
-  return [['eco',4],[['det','sil','logic'][h%3],4],[(h>>2)%2?'truc':'cursa',(h>>2)%2?5:12],[third,third==='kara'?1:2]];
+  const s=subj||S.missionSubj||'es';
+  if(s==='es'){
+    const all=['es_dip','es_hip','es_prec','es_def','es_ora'];
+    const skip=h%all.length;
+    return all.filter((_,i)=>i!==skip).map(k=>[k,5]);
+  }
+  if(s==='mat') return [['mates',5],['logic',4],['mates',5],['logic',4]];
+  if(s==='en') return [['angles',5],['angles',5],['logic',4],['angles',5]];
+  if(s==='ca'){
+    const third=['talla','punts','kara'][(h>>4)%3];
+    return [['eco',4],[['det','sil','digrafs'][h%3],5],[(h>>2)%2?'truc':'cursa',(h>>2)%2?5:12],[third,third==='kara'?1:2]];
+  }
+  // mix (variat)
+  const esG=['es_dip','es_hip','es_prec','es_def','es_ora'][h%5];
+  const caG=['digrafs','det','truc','sil'][(h>>2)%4];
+  return [[esG,5],[caG,5],['mates',4],[['es_ora','angles','logic'][(h>>4)%3],4]];
 }
 const capFirst=s=>s.charAt(0).toUpperCase()+s.slice(1);
 const lowFirst=s=>s.charAt(0).toLowerCase()+s.slice(1);
@@ -1510,7 +1681,570 @@ function logicPick(i){
   save();renderGame();
 }
 
+/* ============ PHASE 4 · CASTELLÀ (UNIDAD 2 + REPÀS DE NIVELL), CATALÀ DÍGRAFS, MATES & ANGLÈS ============ */
+
+/* --- 1. CASTELLÀ: DIPTONGOS E HIATOS (pàg. 38 i 39) --- */
+const ES_DIP_BANK = [
+  // Exemples i exercicis 19 i 20 del llibre (pàg. 38-39)
+  {w:'aire',v:'ai',t:'diptongo',syl:'ai·re',bad:'a·i·re',why:'Fuerte (a) + débil átona (i): se pronuncian juntas en la misma sílaba (ai-re).'},
+  {w:'ciudad',v:'iu',t:'diptongo',syl:'ciu·dad',bad:'ci·u·dad',why:'Dos vocales débiles (i + u) van siempre juntas en la misma sílaba (ciu-dad).'},
+  {w:'caoba',v:'ao',t:'hiato',syl:'ca·o·ba',bad:'cao·ba',why:'Dos vocales fuertes (a + o) nunca van en la misma sílaba: se separan (ca-o-ba).'},
+  {w:'día',v:'ía',t:'hiato',syl:'dí·a',bad:'día',why:'Vocal débil tónica con tilde (í) + vocal fuerte (a): la í tiene fuerza y rompe la sílaba (dí-a).'},
+  {w:'puerta',v:'ue',t:'diptongo',syl:'puer·ta',bad:'pu·er·ta',why:'Vocal débil átona (u) + fuerte (e): van juntas en la misma sílaba (puer-ta).'},
+  {w:'sensación',v:'ió',t:'diptongo',syl:'sen·sa·ción',bad:'sen·sa·ci·ón',why:'Vocal débil átona (i) + vocal fuerte tónica (ó): forman diptongo (sen-sa-ción).'},
+  {w:'vacío',v:'ío',t:'hiato',syl:'va·cí·o',bad:'va·cío',why:'La vocal débil (í) es tónica y lleva tilde delante de la fuerte (o): forma hiato (va-cí-o).'},
+  {w:'reír',v:'eí',t:'hiato',syl:'re·ír',bad:'reír',why:'Vocal fuerte (e) + vocal débil tónica con tilde (í): se separan en dos sílabas (re-ír).'},
+  {w:'cuerpo',v:'ue',t:'diptongo',syl:'cuer·po',bad:'cu·er·po',why:'Vocal débil (u) + vocal fuerte (e): se pronuncian juntas (cuer-po).'},
+  {w:'rusgalía',v:'ía',t:'hiato',syl:'rus·ga·lí·a',bad:'rus·ga·lía',why:'¡Ojo con esta del libro! La í lleva tilde (vocal débil tónica + vocal fuerte a), así que se separa en sílabas distintas: rus-ga-lí-a.'},
+  {w:'energía',v:'ía',t:'hiato',syl:'e·ner·gí·a',bad:'e·ner·gía',why:'La í lleva tilde (vocal débil tónica + fuerte a), por eso forman hiato (e-ner-gí-a).'},
+  {w:'demasiado',v:'ia',t:'diptongo',syl:'de·ma·sia·do',bad:'de·ma·si·a·do',why:'Vocal débil átona (i) + vocal fuerte (a): van juntas en la misma sílaba (de-ma-sia-do).'},
+  {w:'presentimiento',v:'ie',t:'diptongo',syl:'pre·sen·ti·mien·to',bad:'pre·sen·ti·mi·en·to',why:'Vocal débil átona (i) + fuerte (e): forman diptongo en -mien-.'},
+  {w:'suave',v:'ua',t:'diptongo',syl:'sua·ve',bad:'su·a·ve',why:'Vocal débil átona (u) + fuerte (a): se pronuncian en la misma sílaba (sua-ve).'},
+  {w:'tierra',v:'ie',t:'diptongo',syl:'tie·rra',bad:'ti·e·rra',why:'Vocal débil átona (i) + fuerte (e): van juntas en la misma sílaba (tie-rra).'},
+  {w:'conversación',v:'ió',t:'diptongo',syl:'con·ver·sa·ción',bad:'con·ver·sa·ci·ón',why:'La fuerza recae en la vocal fuerte (ó), no en la débil (i): forman diptongo (-ción).'},
+  {w:'piedra',v:'ie',t:'diptongo',syl:'pie·dra',bad:'pi·e·dra',why:'Vocal débil (i) + vocal fuerte (e): se unen en la sílaba pie-dra.'},
+  {w:'suelo',v:'ue',t:'diptongo',syl:'sue·lo',bad:'su·e·lo',why:'Vocal débil (u) + vocal fuerte (e): forman diptongo (sue-lo).'},
+  {w:'tío',v:'ío',t:'hiato',syl:'tí·o',bad:'tío',why:'La vocal débil (í) es tónica y lleva tilde, así que se separa de la fuerte (tí-o).'},
+  {w:'nieve',v:'ie',t:'diptongo',syl:'nie·ve',bad:'ni·e·ve',why:'Vocal débil (i) + fuerte (e): van juntas en la misma sílaba (nie-ve).'},
+  {w:'raíz',v:'aí',t:'hiato',syl:'ra·íz',bad:'raíz',why:'Vocal fuerte (a) + débil tónica con tilde (í): forman hiato (ra-íz).'},
+  {w:'aula',v:'au',t:'diptongo',syl:'au·la',bad:'a·u·la',why:'Vocal fuerte (a) + vocal débil átona (u): van juntas (au-la).'},
+  {w:'posición',v:'ió',t:'diptongo',syl:'po·si·ción',bad:'po·si·ci·ón',why:'Vocal débil átona (i) + fuerte tónica (ó): forman diptongo (-ción).'},
+  {w:'serio',v:'io',t:'diptongo',syl:'se·rio',bad:'se·ri·o',why:'Vocal débil átona (i) + vocal fuerte (o): van en la misma sílaba (se-rio).'},
+  {w:'diferencia',v:'ia',t:'diptongo',syl:'di·fe·ren·cia',bad:'di·fe·ren·ci·a',why:'Vocal débil átona (i) + fuerte (a): forman diptongo (-cia).'},
+  {w:'caer',v:'ae',t:'hiato',syl:'ca·er',bad:'caer',why:'Dos vocales fuertes (a + e): cada una forma su propia sílaba (ca-er).'},
+  {w:'frío',v:'ío',t:'hiato',syl:'frí·o',bad:'frío',why:'Vocal débil tónica con tilde (í) + vocal fuerte (o): forman hiato (frí-o).'},
+  {w:'ruido',v:'ui',t:'diptongo',syl:'rui·do',bad:'ru·i·do',why:'Dos vocales débiles (u + i) van siempre juntas en la misma sílaba (rui-do).'},
+  // Més paraules de la pàg. 38 i nivell 5è/6è
+  {w:'aceite',v:'ei',t:'diptongo',syl:'a·cei·te',bad:'a·ce·i·te',why:'Vocal fuerte (e) + débil átona (i): van juntas (a-cei-te).'},
+  {w:'boina',v:'oi',t:'diptongo',syl:'boi·na',bad:'bo·i·na',why:'Vocal fuerte (o) + débil átona (i): forman diptongo (boi-na).'},
+  {w:'acuarela',v:'ua',t:'diptongo',syl:'a·cua·re·la',bad:'a·cu·a·re·la',why:'Vocal débil (u) + fuerte (a): van juntas en -cua-.'},
+  {w:'abuelo',v:'ue',t:'diptongo',syl:'a·bue·lo',bad:'a·bu·e·lo',why:'Vocal débil (u) + fuerte (e): forman diptongo (a-bue-lo).'},
+  {w:'cuidado',v:'ui',t:'diptongo',syl:'cui·da·do',bad:'cu·i·da·do',why:'Dos vocales débiles (u + i) siempre forman diptongo (cui-da-do).'},
+  {w:'triunfo',v:'iu',t:'diptongo',syl:'triun·fo',bad:'tri·un·fo',why:'Dos vocales débiles (i + u) se unen en la misma sílaba (triun-fo).'},
+  {w:'actúa',v:'úa',t:'hiato',syl:'ac·tú·a',bad:'ac·túa',why:'Vocal débil tónica con tilde (ú) + fuerte (a): forman hiato (ac-tú-a).'},
+  {w:'baúl',v:'aú',t:'hiato',syl:'ba·úl',bad:'baúl',why:'Vocal fuerte (a) + débil tónica con tilde (ú): se separan (ba-úl).'},
+  {w:'oído',v:'oí',t:'hiato',syl:'o·í·do',bad:'oí·do',why:'Vocal fuerte (o) + débil tónica con tilde (í): forman hiato (o-í-do).'},
+  {w:'cereal',v:'ea',t:'hiato',syl:'ce·re·al',bad:'ce·real',why:'Dos vocales fuertes (e + a): se separan en sílabas distintas (ce-re-al).'},
+  {w:'canoa',v:'oa',t:'hiato',syl:'ca·no·a',bad:'ca·noa',why:'Dos vocales fuertes (o + a): forman hiato (ca-no-a).'},
+  {w:'poeta',v:'oe',t:'hiato',syl:'po·e·ta',bad:'poe·ta',why:'Dos vocales fuertes (o + e): siempre se separan (po-e-ta).'},
+  {w:'cooperar',v:'oo',t:'hiato',syl:'co·o·pe·rar',bad:'coo·pe·rar',why:'Dos vocales iguales / fuertes (o + o): se pronuncian en sílabas separadas (co-o-pe-rar).'},
+  {w:'teatro',v:'ea',t:'hiato',syl:'te·a·tro',bad:'tea·tro',why:'Dos vocales fuertes (e + a): forman hiato (te-a-tro).'}
+];
+function buildEsDip(n){
+  return shuffle(ES_DIP_BANK).slice(0,n).map(x=>({...x,sylOpts:shuffle([x.syl,x.bad])}));
+}
+function hlVowels(w,v){
+  const idx=w.toLowerCase().indexOf(v.toLowerCase());
+  if(idx<0) return esc(w);
+  return esc(w.slice(0,idx))+`<span class="hl">${esc(w.slice(idx,idx+v.length))}</span>`+esc(w.slice(idx+v.length));
+}
+function esDipHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  const cheat=st.cheat?`<div class="cheat">
+    <div><b>🦍 Vocales fuertes (abiertas):</b> A, E, O · <b>🐣 Vocales débiles (cerradas):</b> I, U</div>
+    <div>🤝 <b>DIPTONGO (misma sílaba):</b> Fuerte + Débil átona (<i>ai-re, puer-ta</i>) o Débil + Débil (<i>ciu-dad, rui-do</i>).</div>
+    <div>✂️ <b>HIATO (sílabas distintas):</b> Dos Fuertes (<i>ca-o-ba, po-e-ta</i>) o cuando la Débil es tónica y lleva tilde: <b>í, ú</b> (<i>dí-a, ba-úl, rus-ga-lí-a</i>).</div>
+  </div>`:'';
+  const step1Done=!!st.typeOk||done;
+  const typeBtns=`<div class="opts">
+    <button class="opt wopt ${st.wrongType==='diptongo'?'bad':''} ${(step1Done&&it.t==='diptongo')?'ok':''}" data-act="esDipType" data-t="diptongo" ${step1Done||st.wrongType==='diptongo'?'disabled':''}>🤝 Diptongo<br><span class="small muted" style="font-weight:600">Van juntas</span></button>
+    <button class="opt wopt ${st.wrongType==='hiato'?'bad':''} ${(step1Done&&it.t==='hiato')?'ok':''}" data-act="esDipType" data-t="hiato" ${step1Done||st.wrongType==='hiato'?'disabled':''}>✂️ Hiato<br><span class="small muted" style="font-weight:600">Se separan</span></button>
+  </div>`;
+  const sylSection=step1Done?`<p class="muted" style="margin-top:4px"><b>Paso 2:</b> ¿Cómo se separa en sílabas?</p>
+    <div class="opts">${it.sylOpts.map(so=>`<button class="opt wopt ${st.wrongSyl===so?'bad':''} ${done&&so===it.syl?'ok':''}" data-act="esDipSyl" data-s="${esc(so)}" ${done||st.wrongSyl===so?'disabled':''}>${esc(so)}</button>`).join('')}</div>`:'';
+  let fb='';
+  if(st.ok) fb=`<div class="feedback ok">¡Genial! <b>${esc(it.syl)}</b> es un <b>${it.t}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.over) fb=`<div class="feedback no">Es un <b>${it.t}</b> y se separa <b>${esc(it.syl)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.msg) fb=`<div class="feedback try">${esc(st.msg)}</div>`;
+  return `<div class="stage">
+    <div class="speak">
+      <button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="toggleCheat">${st.cheat?'Oculta el truco':'💡 Ver truco de vocales'}</button>
+      <button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="esSay" data-t="${esc(it.w)}">${IC.speaker}Escucha</button>
+    </div>
+    ${cheat}
+    <p class="muted">Fíjate en las vocales destacadas de esta palabra:</p>
+    <p class="word big">${hlVowels(it.w,it.v)}</p>
+    <p class="muted"><b>Paso 1:</b> ¿Las vocales <b>${esc(it.v)}</b> forman diptongo o hiato?</p>
+    ${typeBtns}
+    ${sylSection}
+    ${fb}
+    ${done?`<button class="btn" data-act="next">Siguiente</button>`:''}
+  </div>`;
+}
+function esDipType(t){
+  const it=G.items[G.i], st=G.st;
+  if(t===it.t){
+    st.typeOk=true; st.msg=''; beep(true);
+  }else{
+    G.tries++; st.wrongType=t; st.typeOk=true;
+    st.msg=`Tiene truco: fíjate bien en las vocales «${it.v}» (${it.t==='hiato'?'se separan en hiato':'van juntas en diptongo'}). Ahora elige cómo se separa en sílabas.`;
+    beep(false);
+  }
+  renderGame();
+}
+function esDipSyl(s){
+  const it=G.items[G.i], st=G.st; G.tries++;
+  if(s===it.syl){
+    st.ok=true; reward(G.tries===1,'es_dip');
+  }else{
+    st.wrongSyl=s; st.over=true; miss('es_dip');
+    if(llAdd(it.w,`Castellà (${it.t}): ${it.syl}`,'es_dip')) G.newWords.push(it.w);
+  }
+  save(); renderGame();
+}
+
+/* --- 2. CASTELLÀ: HIPERÓNIMOS E HIPÓNIMOS (pàg. 40 i 41, act. 21) --- */
+const ES_HIP_GROUPS = [
+  // Exactes del llibre (pàg. 40 i 41)
+  {hip:'máquina',words:['telar','grúa','excavadora','tractor'],book:'telar',hint:'Un telar es un aparato con piezas que sirve para tejer: por tanto, su hiperónimo es «máquina».'},
+  {hip:'estrella',words:['sol','Sirio','Polar','alfa centauri'],book:'sol',hint:'El Sol brilla con luz propia en el espacio: su hiperónimo es «estrella».'},
+  {hip:'construcción',words:['cabaña','castillo','rascacielos','puente'],book:'cabaña',hint:'Una cabaña es una edificación fabricada con madera u otros materiales: su hiperónimo es «construcción».'},
+  {hip:'hebra',words:['hilo','fibra','filamento','estambre'],book:'hilo',hint:'Un hilo es un filamento largo y delgado para coser o tejer: su hiperónimo en la tabla es «hebra».'},
+  {hip:'color',words:['turquesa','escarlata','añil','violeta'],book:'turquesa',hint:'El turquesa es un tono azul verdoso: su hiperónimo es «color».'},
+  {hip:'viento',words:['brisa','vendaval','huracán','cierzo'],book:'brisa',hint:'La brisa es un aire suave: su hiperónimo es «viento».'},
+  {hip:'árbol',words:['pino','roble','abeto','nogal'],book:'pino',hint:'Pino, roble, abeto y nogal son tipos de árboles: «árbol» es su hiperónimo.'},
+  {hip:'flor',words:['margarita','amapola','jazmín','girasol'],book:'margarita',hint:'Margarita, amapola, jazmín y girasol son hipónimos del hiperónimo «flor».'},
+  // Més grups del mateix nivell
+  {hip:'herramienta',words:['martillo','destornillador','alicates','sierra'],book:'martillo',hint:'El martillo y la sierra sirven para trabajar o reparar: su hiperónimo es «herramienta».'},
+  {hip:'instrumento',words:['violín','flauta','trompeta','tambor'],book:'violín',hint:'El violín y la flauta sirven para hacer música: su hiperónimo es «instrumento».'},
+  {hip:'prenda de vestir',words:['jersey','camiseta','abrigo','pantalón'],book:'jersey',hint:'El jersey y el abrigo son ropa que nos ponemos: su hiperónimo es «prenda de vestir».'},
+  {hip:'planeta',words:['Júpiter','Marte','Venus','Saturno'],book:'Júpiter',hint:'Júpiter, Marte y Venus giran alrededor del Sol: su hiperónimo es «planeta».'},
+  {hip:'insecto',words:['abeja','hormiga','escarabajo','mariposa'],book:'abeja',hint:'La abeja y la hormiga son pequeños animales invertebrados: su hiperónimo es «insecto».'},
+  {hip:'emoción',words:['alegría','miedo','sorpresa','tristeza'],book:'alegría',hint:'La alegría, el miedo y la sorpresa son cosas que sentimos: su hiperónimo es «emoción».'},
+  {hip:'metal',words:['hierro','cobre','oro','plata'],book:'cobre',hint:'El hierro, el cobre y el oro son minerales brillantes y resistentes: su hiperónimo es «metal».'},
+  {hip:'calzado',words:['bota','sandalia','zapatilla','mocasín'],book:'bota',hint:'Las botas y las sandalias se llevan en los pies: su hiperónimo es «calzado».'}
+];
+function buildEsHip(n){
+  const groups=shuffle(ES_HIP_GROUPS).slice(0,n);
+  return groups.map((g,i)=>{
+    const mode=i%3; // 0: relaciona con hiperónimo (act 21), 1: elige el hipónimo para la caja, 2: caza al intruso
+    const others=ES_HIP_GROUPS.filter(x=>x.hip!==g.hip);
+    if(mode===0){
+      const w=g.book||pick(g.words);
+      const dist=shuffle(others).slice(0,3).map(x=>x.hip);
+      return {mode:0,w,ans:g.hip,opts:shuffle([g.hip,...dist]),hint:g.hint};
+    }
+    if(mode===1){
+      const shown=g.words.slice(0,3), ans=g.words[3];
+      const dist=shuffle(others).slice(0,3).map(x=>pick(x.words));
+      return {mode:1,hip:g.hip,shown,ans,opts:shuffle([ans,...dist]),hint:g.hint};
+    }
+    const good=g.words.slice(0,3);
+    const otherG=pick(others), intruso=pick(otherG.words);
+    return {mode:2,hip:g.hip,opts:shuffle([...good,intruso]),ans:intruso,otherHip:otherG.hip,hint:`«${capFirst(intruso)}» no es un hipónimo de «${g.hip}», sino de «${otherG.hip}».`};
+  });
+}
+function esHipHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  let prompt='', card='';
+  if(it.mode===0){
+    prompt='Relaciona esta palabra (hipónimo) con su <b>hiperónimo</b> (la palabra paraguas):';
+    card=`<p class="word big">«${esc(it.w)}»</p>`;
+  }else if(it.mode===1){
+    prompt=`El hiperónimo es <b>«${esc(it.hip)}»</b>. ¿Qué otro <b>hipónimo</b> entra en su grupo?`;
+    card=`<div class="fam"><b>${esc(capFirst(it.hip))}:</b> ${it.shown.map(esc).join(', ')} y <span class="hl">…</span></div>`;
+  }else{
+    prompt=`¡Se ha colado un <b>intruso</b>! Tres palabras son hipónimos de <b>«${esc(it.hip)}»</b>. Toca la que <b>NO</b> pertenece al grupo:`;
+    card=`<div class="fam">Caja del hiperónimo: <b>${esc(capFirst(it.hip))}</b></div>`;
+  }
+  const opts=`<div class="opts">${it.opts.map(o=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.ans?'ok':''}" data-act="esHipPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+  let fb='';
+  if(st.ok) fb=`<div class="feedback ok">¡Muy bien! ${esc(it.hint)}</div>`;
+  else if(st.over) fb=`<div class="feedback no">La respuesta era <b>${esc(it.ans)}</b>.<br>${esc(it.hint)}</div>`;
+  else if(st.wrong) fb=`<div class="feedback try">Casi… Recuerda: el <b>hiperónimo</b> es el nombre del grupo general (como <i>árbol</i> o <i>máquina</i>) y los <b>hipónimos</b> son los elementos concretos.</div>`;
+  return `<div class="stage">${prompt}${card}${opts}${fb}${done?`<button class="btn" data-act="next">Siguiente</button>`:''}</div>`;
+}
+function esHipPick(o){
+  const it=G.items[G.i], st=G.st; G.tries++;
+  if(o===it.ans){st.ok=true;reward(G.tries===1,'es_hip')}
+  else{
+    st.wrong=(st.wrong||[]).concat(o);
+    if(G.tries>=2){st.over=true;miss('es_hip')}
+    else beep(false);
+  }
+  save(); renderGame();
+}
+
+/* --- 3. CASTELLÀ: PRECISIÓN LÉXICA · ¡FUERA LA PALABRA «COSA»! (pàg. 40 i 41, act. 22) --- */
+const ES_PREC_BANK = [
+  // Exactes de la pàg. 40 i pàg. 41 (act. 22)
+  {s:'Kyle consulta una [cosa] que sostiene entre las manos en la primera viñeta.',bad:'cosa',a:'libreta',o:['libreta','piedra','linterna','cabaña'],why:'En lugar de la palabra comodín «cosa», «libreta» (o cuaderno) explica con precisión qué está leyendo Kyle.'},
+  {s:'Vic lleva un collar; es una [cosa] con dos perlas y la inicial de su nombre.',bad:'cosa',a:'joya',o:['joya','herramienta','prenda','máquina'],why:'Un collar con perlas es una «joya» (o adorno). ¡Mucho más preciso que decir «cosa»!'},
+  {s:'Cuando Nate pone la piedra boca abajo, se iluminan unas [cosas] en el bosque.',bad:'cosas',a:'setas',o:['setas','nubes','cabañas','carpetas'],why:'En la escena del bosque se iluminan unas «setas». Evitamos la palabra comodín «cosas».'},
+  {s:'Harry lleva una [cosa] colgada para guardar objetos.',bad:'cosa',a:'bandolera',o:['bandolera','brújula','alfombra','bufanda'],why:'Una bolsa colgada al hombro para guardar objetos es una «bandolera» (o mochila).'},
+  {s:'Una cabaña es una [cosa] pequeña en la que pueden refugiarse o vivir las personas.',bad:'cosa',a:'construcción',o:['construcción','máquina','herramienta','planta'],why:'Para definir «cabaña» con precisión (pág. 40), empezamos con el hiperónimo «construcción» en vez de «cosa».'},
+  {s:'Una cabaña es una construcción pequeña, [hecha] con diferentes materiales.',bad:'hecha',a:'fabricada',o:['fabricada','dicha','pensada','llovida'],why:'Sustituir el verbo comodín «hecha» por «fabricada» o «construida» da mucha más precisión léxica.'},
+  {s:'Una cabaña está fabricada con diferentes [cosas], como madera o piedra.',bad:'cosas',a:'materiales',o:['materiales','emociones','animales','canciones'],why:'La madera y la piedra con las que se construye son «materiales», no «cosas».'},
+  // Més frases del mateix nivell (cosa, hacer, decir, poner)
+  {s:'Para orientarse en la montaña, el explorador sacó una [cosa] con una aguja imantada.',bad:'cosa',a:'brújula',o:['brújula','moneda','cuchara','tijera'],why:'El instrumento con aguja imantada para orientarse es la «brújula».'},
+  {s:'El carpintero [hace] un armario de madera de roble en su taller.',bad:'hace',a:'fabrica',o:['fabrica','cocina','dibuja','cultiva'],why:'El verbo «hacer» es una palabra comodín; para un mueble es mucho más preciso decir «fabrica» o «construye».'},
+  {s:'Para que nadie más la oyera, Mochi le [dijo] el secreto muy bajito al oído.',bad:'dijo',a:'susurró',o:['susurró','gritó','cantó','preguntó'],why:'Hablar muy bajito al oído es «susurrar», mucho más preciso que «decir».'},
+  {s:'El pastelero [hace] una tarta de fresa en el horno.',bad:'hace',a:'hornea',o:['hornea','teje','esculpe','repara'],why:'En lugar de «hace», «hornea» o «elabora» explica con exactitud cómo prepara la tarta.'},
+  {s:'Tengo que [hacer] una definición para la clase de lengua.',bad:'hacer',a:'redactar',o:['redactar','construir','fabricar','plantar'],why:'Cuando escribimos un texto o una definición, el verbo preciso es «redactar» o «escribir».'},
+  {s:'Al subir al escenario, sintió una [cosa] muy bonita en el pecho.',bad:'cosa',a:'emoción',o:['emoción','herramienta','mueble','piedra'],why:'Lo que sentimos por dentro (alegría, ilusión, nervios) es una «emoción» o un «sentimiento».'},
+  {s:'Necesito una [cosa] del taller para apretar este tornillo suelto.',bad:'cosa',a:'herramienta',o:['herramienta','prenda','flor','bebida'],why:'Un destornillador o una llave para reparar algo es una «herramienta».'},
+  {s:'A esta sopa le falta una [cosa] importante: una pizca de sal.',bad:'cosa',a:'ingrediente',o:['ingrediente','instrumento','juguete','vehículo'],why:'Cada elemento que lleva una receta de cocina es un «ingrediente».'}
+];
+function esPrecHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  const sent=esc(it.s).replace(/\[(.+?)\]/,done?`<span class="goodw">${esc(it.a)}</span>`:`<span class="badw">${esc(it.bad)}</span>`);
+  const opts=`<div class="opts">${it.o.map(o=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.a?'ok':''}" data-act="esPrecPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+  let fb='';
+  if(st.ok) fb=`<div class="feedback ok">¡Diana! Has cambiado <b>«${esc(it.bad)}»</b> por <b>«${esc(it.a)}»</b>.<br>${esc(it.why)}</div>`;
+  else if(st.over) fb=`<div class="feedback no">La palabra más precisa era <b>«${esc(it.a)}»</b>.<br>${esc(it.why)}</div>`;
+  else if(st.wrong) fb=`<div class="feedback try">Fíjate bien en el contexto de la frase: ¿qué palabra encaja con exactitud?</div>`;
+  return `<div class="stage">
+    <p class="muted">¡Alerta de palabra comodín! Sustituye la palabra tachada por otra <b>más precisa</b>:</p>
+    <p class="sentence">${sent}</p>
+    ${opts}${fb}
+    <div class="speak">${done?`<button class="btn alt" data-act="esSay" data-t="${esc(it.s.replace(/\[.+?\]/,it.a))}">${IC.speaker}Escucha</button><button class="btn" data-act="next">Siguiente</button>`:''}</div>
+  </div>`;
+}
+function esPrecPick(o){
+  const it=G.items[G.i], st=G.st; G.tries++;
+  if(o===it.a){st.ok=true;reward(G.tries===1,'es_prec')}
+  else{
+    st.wrong=(st.wrong||[]).concat(o);
+    if(G.tries>=2){st.over=true;miss('es_prec')}
+    else beep(false);
+  }
+  save(); renderGame();
+}
+
+/* --- 4. CASTELLÀ: TALLER DE DEFINICIONES (pàg. 40 i 41, act. 23) --- */
+const ES_DEF_BANK = [
+  // Exactes de la pàg. 41 (act. 23: Brújula, Jersey, Explorador) + Cabaña (pàg. 40) + Telar
+  {w:'Brújula',emoji:'🧭',hip:'Instrumento',hipOpts:['Instrumento','Cosa redonda','Juguete','Vehículo'],
+    char:'que tiene una aguja imantada que señala el norte y sirve para orientarse.',
+    charBad:['que sirve para hacer cosas cuando vas por ahí.','que tiene hojas de papel para apuntar teléfonos.'],
+    dict:'Instrumento consistente en una caja con una aguja imantada que gira sobre un eje y señala el norte magnético, que sirve para orientarse.'},
+  {w:'Jersey',emoji:'🧶',hip:'Prenda de vestir',hipOpts:['Prenda de vestir','Cosa de lana','Herramienta','Calzado'],
+    char:'de punto y con mangas, que cubre el cuerpo desde el cuello hasta la cintura.',
+    charBad:['hecha con cosas calentitas para poner encima de los zapatos.','sin mangas que se pone en las manos como un guante.'],
+    dict:'Prenda de vestir de punto, cerrada y con mangas, que cubre desde el cuello hasta la cintura.'},
+  {w:'Explorador',emoji:'🕵️‍♀️',hip:'Persona',hipOpts:['Persona','Cosa que viaja','Herramienta','Construcción'],
+    char:'que recorre e investiga lugares desconocidos o poco frecuentados para descubrir qué hay en ellos.',
+    charBad:['que hace muchas cosas en su casa sin salir nunca de su habitación.','que sirve para iluminar el suelo cuando es de noche.'],
+    dict:'Persona que explora o recorre un territorio desconocido o poco conocido para estudiarlo o descubrirlo.'},
+  {w:'Cabaña',emoji:'🛖',hip:'Construcción',hipOpts:['Construcción','Cosa del bosque','Máquina','Vehículo'],
+    char:'pequeña, fabricada con materiales como madera o piedra, en la que pueden refugiarse o vivir las personas.',
+    charBad:['pequeña hecha con diferentes cosas para guardar lápices.','con ruedas y motor que vuela por encima de las nubes.'],
+    dict:'Construcción rústica y pequeña, fabricada generalmente con madera o cañas, destinada a refugio o vivienda.'},
+  {w:'Telar',emoji:'🧵',hip:'Máquina',hipOpts:['Máquina','Cosa antigua','Prenda de vestir','Planta'],
+    char:'que sirve para tejer entrelazando hilos o hebras.',
+    charBad:['que hace cosas con agua caliente en la cocina.','que crece en el jardín y tiene pétalos de color turquesa.'],
+    dict:'Máquina para tejer, construida con madera o metal, en la que se colocan los hilos para formar telas.'},
+  // Més paraules del mateix nivell
+  {w:'Linterna',emoji:'🔦',hip:'Aparato portátil',hipOpts:['Aparato portátil','Cosa que brilla','Mueble','Estrella'],
+    char:'que funciona con pilas o batería y sirve para alumbrar en la oscuridad.',
+    charBad:['que dice cosas cuando aprietas un botón en el agua.','gigante de fuego que está en el centro del sistema solar.'],
+    dict:'Aparato eléctrico portátil, con pila y bombilla o led, que sirve para proyectar luz en la oscuridad.'},
+  {w:'Diccionario',emoji:'📖',hip:'Libro',hipOpts:['Libro','Cosa con letras','Juguete','Instrumento musical'],
+    char:'en el que se recogen y explican, en orden alfabético, las palabras de una lengua.',
+    charBad:['donde la gente hace dibujos y pega cromos sin texto.','que sirve para medir la temperatura cuando tienes fiebre.'],
+    dict:'Obra de consulta en que se recoge y define, generalmente por orden alfabético, un conjunto de palabras.'},
+  {w:'Microscopio',emoji:'🔬',hip:'Instrumento óptico',hipOpts:['Instrumento óptico','Cosa de ciencia','Prenda','Recipiente'],
+    char:'con lentes de gran aumento que permite observar seres u objetos extremadamente pequeños.',
+    charBad:['que hace cosas grandes cuando miras las estrellas lejanas.','de cocina que sirve para batir huevos y nata.'],
+    dict:'Instrumento óptico destinado a observar objetos extremadamente diminutos, haciendo perceptible lo que no lo es a simple vista.'}
+];
+function esDefHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  if(!st.init){
+    st.hOpts=shuffle(it.hipOpts);
+    st.cOpts=shuffle([it.char,...it.charBad]);
+    st.init=true;
+  }
+  const s1=!!st.step1||done;
+  const box=`<div class="defbox">
+    <b>${esc(it.emoji)} ${esc(it.w)}:</b>
+    ${s1?`<b>${esc(it.hip)}</b>`:`<span class="step">[1.º Elige el hiperónimo]</span>`}
+    ${done?esc(it.char):(s1?`<span class="step">[2.º Elige sus características]</span>`:'…')}
+  </div>`;
+  let controls='';
+  if(!s1){
+    controls=`<p class="muted"><b>Paso 1:</b> ¿Con qué <b>hiperónimo</b> preciso debemos empezar la definición de <b>«${esc(it.w)}»</b>? (¡Prohibido usar «cosa»!)</p>
+      <div class="opts">${st.hOpts.map(o=>`<button class="opt wopt ${st.wrong1&&st.wrong1.includes(o)?'bad':''}" data-act="esDefStep1" data-o="${esc(o)}" ${st.wrong1&&st.wrong1.includes(o)?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+  }else if(!done){
+    controls=`<p class="muted"><b>Paso 2:</b> Ahora elige las <b>características propias</b> más precisas y sin palabras comodín:</p>
+      <div class="stack" style="align-items:center;width:100%">${st.cOpts.map((c,idx)=>`<button class="opt sopt ${st.wrong2&&st.wrong2.includes(idx)?'bad':''}" data-act="esDefStep2" data-i="${idx}" ${st.wrong2&&st.wrong2.includes(idx)?'disabled':''}><span>• …${esc(c)}</span></button>`).join('')}</div>`;
+  }
+  let fb='';
+  if(done){
+    fb=`<div class="feedback ${st.ok?'ok':'no'}">
+      <b>${st.ok?'¡Definición perfecta!':'Así queda la definición precisa:'}</b><br>
+      📖 <b>Diccionario:</b> «<i>${esc(it.dict)}</i>»<br>
+      <span class="small muted">Fórmula: 1.º Hiperónimo (${esc(it.hip.toLowerCase())}) + 2.º Características propias sin decir «cosa».</span>
+    </div>`;
+  }else if(st.msg){
+    fb=`<div class="feedback try">${esc(st.msg)}</div>`;
+  }
+  return `<div class="stage">
+    <p class="muted">Construye la definición de <b>«${esc(it.w)}»</b> siguiendo los 2 pasos del libro:</p>
+    ${box}${controls}${fb}
+    ${done?`<div class="speak"><button class="btn alt" data-act="esSay" data-t="${esc(it.w+': '+it.hip+' '+it.char)}">${IC.speaker}Escucha</button><button class="btn" data-act="next">Siguiente</button></div>`:''}
+  </div>`;
+}
+function esDefStep1(o){
+  const it=G.items[G.i], st=G.st;
+  if(o===it.hip){
+    st.step1=true; st.msg=''; beep(true);
+  }else{
+    G.tries++; st.wrong1=(st.wrong1||[]).concat(o);
+    st.msg=o.toLowerCase().includes('cosa')?'¡Cuidado! Nunca empieces una definición con la palabra comodín «cosa». Busca su hiperónimo.':'Ese no es el grupo al que pertenece. Prueba con otro hiperónimo.';
+    beep(false);
+  }
+  renderGame();
+}
+function esDefStep2(idx){
+  const it=G.items[G.i], st=G.st, picked=st.cOpts[idx]; G.tries++;
+  if(picked===it.char){
+    st.ok=true; reward(G.tries===1,'es_def');
+  }else{
+    st.wrong2=(st.wrong2||[]).concat(idx);
+    if(G.tries>=2){st.over=true;miss('es_def')}
+    else{st.msg='Fíjate bien: evita las definiciones con «cosas» o datos falsos y elige la descripción precisa.';beep(false)}
+  }
+  save(); renderGame();
+}
+
+/* --- 5. CASTELLÀ: LA ORACIÓN Y TIPOS DE ORACIONES (pàg. 42) --- */
+const ES_ORA_BANK = [
+  // Frase vs Oración (pàg. 42 + extra)
+  {qtype:'fo',s:'¡Qué guaaay!',ans:'Frase',verb:null,why:'No contiene ningún verbo, por tanto es una FRASE (no una oración).'},
+  {qtype:'fo',s:'¿Alguno ve el agua?',ans:'Oración',verb:'ve',why:'Contiene el verbo «ve» (del verbo ver), así que es una ORACIÓN.'},
+  {qtype:'fo',s:'¡Buenos días a todos!',ans:'Frase',verb:null,why:'Expresa un saludo pero no tiene ningún verbo: es una FRASE.'},
+  {qtype:'fo',s:'Los exploradores cruzaron el puente de madera.',ans:'Oración',verb:'cruzaron',why:'Tiene el verbo «cruzaron» (del verbo cruzar): es una ORACIÓN.'},
+  {qtype:'fo',s:'¡Menuda sorpresa tan increíble!',ans:'Frase',verb:null,why:'No hay ningún verbo en toda la expresión: es una FRASE.'},
+  {qtype:'fo',s:'La brújula señala siempre hacia el norte.',ans:'Oración',verb:'señala',why:'Contiene el verbo «señala»: por eso es una ORACIÓN.'},
+  {qtype:'fo',s:'¡Silencio en la cabaña, por favor!',ans:'Frase',verb:null,why:'Aunque pide silencio, no tiene ningún verbo: es una FRASE.'},
+  {qtype:'fo',s:'Las setas brillaban en la oscuridad del bosque.',ans:'Oración',verb:'brillaban',why:'Tiene el verbo «brillaban»: es una ORACIÓN.'},
+  // Tipos de oración según la intención (pàg. 42 exactes + extra)
+  {qtype:'tipo',s:'Yyyy la luna está casi en posición.',ans:'Declarativa',why:'Informa de un hecho (la posición de la luna): es una oración DECLARATIVA.'},
+  {qtype:'tipo',s:'¿Por cuál seguimos?',ans:'Interrogativa',why:'Formula una pregunta entre signos de interrogación (¿?): es INTERROGATIVA.'},
+  {qtype:'tipo',s:'¡Qué alegría, ya hemos llegado al refugio!',ans:'Exclamativa',why:'Expresa una emoción intensa con signos de exclamación (¡!): es EXCLAMATIVA.'},
+  {qtype:'tipo',s:'Alumbrad el suelo.',ans:'Imperativa',why:'Da una orden o indicación al grupo (verbo «alumbrad»): es IMPERATIVA.'},
+  {qtype:'tipo',s:'Igual se refiere a la piedra.',ans:'Dubitativa',why:'Expresa duda o incertidumbre («Igual se refiere…» = quizá): es DUBITATIVA.'},
+  {qtype:'tipo',s:'Quizás encontremos otra pista detrás de la cabaña.',ans:'Dubitativa',why:'Empieza con «Quizás» y expresa duda o posibilidad: es DUBITATIVA.'},
+  {qtype:'tipo',s:'No toquéis esas setas brillantes del bosque.',ans:'Imperativa',why:'Expresa una prohibición o consejo: es una oración IMPERATIVA.'},
+  {qtype:'tipo',s:'¿Quién lleva el mapa en su bandolera?',ans:'Interrogativa',why:'Sirve para preguntar y lleva signos ¿?: es INTERROGATIVA.'},
+  {qtype:'tipo',s:'El telar antiguo está guardado en el desván.',ans:'Declarativa',why:'Transmite una información de forma objetiva: es DECLARATIVA.'},
+  {qtype:'tipo',s:'¡Cómo brilla esa estrella en el cielo nocturno!',ans:'Exclamativa',why:'Expresa sorpresa y admiración entre signos ¡!: es EXCLAMATIVA.'},
+  {qtype:'tipo',s:'Tal vez llueva esta tarde en la montaña.',ans:'Dubitativa',why:'«Tal vez» expresa duda o incertidumbre: es una oración DUBITATIVA.'},
+  {qtype:'tipo',s:'Guarda la brújula dentro de la mochila, por favor.',ans:'Imperativa',why:'Expresa una petición u orden: es una oración IMPERATIVA.'}
+];
+const ORA_TYPES = [
+  ['Declarativa','📋 Informar'],
+  ['Interrogativa','❓ Preguntar'],
+  ['Exclamativa','🎉 Emoción'],
+  ['Imperativa','📢 Ordenar o pedir'],
+  ['Dubitativa','🤔 Expresar duda']
+];
+function buildEsOra(n){
+  const fos=shuffle(ES_ORA_BANK.filter(x=>x.qtype==='fo')).slice(0,Math.ceil(n/3));
+  const tipos=shuffle(ES_ORA_BANK.filter(x=>x.qtype==='tipo')).slice(0,n-fos.length);
+  return shuffle(fos.concat(tipos));
+}
+function esOraHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  const cheat=st.cheat?`<div class="cheat">
+    <div>🔍 <b>¿Frase u Oración?</b> Una <b>oración</b> tiene al menos <b>un verbo</b> (<i>¿Alguno <u>ve</u> el agua?</i>). Si NO tiene verbo, es una <b>frase</b> (<i>¡Qué guaaay!</i>).</div>
+    <div>🎯 <b>Tipos de oración según la intención:</b><br>
+    • <b>Declarativa:</b> informa (<i>La luna está en posición</i>).<br>
+    • <b>Interrogativa:</b> pregunta (<i>¿Por cuál seguimos?</i>).<br>
+    • <b>Exclamativa:</b> expresa emoción (<i>¡Qué ilusión!</i>).<br>
+    • <b>Imperativa:</b> ordena, aconseja o prohíbe (<i>Alumbrad el suelo</i>).<br>
+    • <b>Dubitativa:</b> expresa duda con <i>igual, quizás, tal vez…</i> (<i>Igual se refiere a la piedra</i>).</div>
+  </div>`:'';
+  let prompt='', opts='';
+  if(it.qtype==='fo'){
+    prompt='Fíjate si tiene <b>verbo</b> o no: ¿es una <b>Frase</b> o una <b>Oración</b>?';
+    opts=`<div class="opts">
+      <button class="opt wopt ${st.wrong&&st.wrong.includes('Oración')?'bad':''} ${done&&it.ans==='Oración'?'ok':''}" data-act="esOraPick" data-o="Oración" ${done||(st.wrong&&st.wrong.includes('Oración'))?'disabled':''}>⚡ Oración<br><span class="small muted" style="font-weight:600">Tiene verbo</span></button>
+      <button class="opt wopt ${st.wrong&&st.wrong.includes('Frase')?'bad':''} ${done&&it.ans==='Frase'?'ok':''}" data-act="esOraPick" data-o="Frase" ${done||(st.wrong&&st.wrong.includes('Frase'))?'disabled':''}>💬 Frase<br><span class="small muted" style="font-weight:600">No tiene verbo</span></button>
+    </div>`;
+  }else{
+    prompt='¿De qué <b>tipo de oración</b> se trata según su intención comunicativa?';
+    opts=`<div class="opts">${ORA_TYPES.map(([k,sub])=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(k)?'bad':''} ${done&&it.ans===k?'ok':''}" data-act="esOraPick" data-o="${k}" ${done||(st.wrong&&st.wrong.includes(k))?'disabled':''}>${k}<br><span class="small muted" style="font-weight:600">${sub}</span></button>`).join('')}</div>`;
+  }
+  let fb='';
+  if(st.ok) fb=`<div class="feedback ok">¡Exacto! Es <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.over) fb=`<div class="feedback no">Era <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.wrong) fb=`<div class="feedback try">Piensa en la pista: ${it.qtype==='fo'?'busca si hay alguna palabra que indique una acción (un verbo).':'¿quiere informar, preguntar, expresar emoción, dar una orden o expresar una duda?'}</div>`;
+  return `<div class="stage">
+    <div class="speak">
+      <button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="toggleCheat">${st.cheat?'Oculta la chuleta':'💡 Ver tabla de la oración'}</button>
+      <button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="esSay" data-t="${esc(it.s)}">${IC.speaker}Escucha</button>
+    </div>
+    ${cheat}
+    <p class="muted">${prompt}</p>
+    <p class="sentence" style="background:var(--bg2);padding:14px 20px;border-radius:18px;border:1px solid var(--line)">«${esc(it.s)}»</p>
+    ${opts}${fb}
+    ${done?`<button class="btn" data-act="next">Siguiente</button>`:''}
+  </div>`;
+}
+function esOraPick(o){
+  const it=G.items[G.i], st=G.st; G.tries++;
+  if(o===it.ans){st.ok=true;reward(G.tries===1,'es_ora')}
+  else{
+    st.wrong=(st.wrong||[]).concat(o);
+    if(G.tries>=2||(it.qtype==='fo'&&G.tries>=1)){st.over=true;miss('es_ora')}
+    else beep(false);
+  }
+  save(); renderGame();
+}
+
+/* --- 6. CATALÀ: CAÇA-DÍGRAFS (rr, ss, ll, ny, qu, gu, tx, tz, ig) --- */
+const DIGRAFS_BANK = [
+  // Inspirats en la fitxa de la terrassa, el pinzell i la granota + vocabulari de cicle mitjà/superior
+  {w:'te_assa',s:'La te_assa de la casa del meu germà petit està plena de flors.',a:'rr',o:['rr','r','ss'],why:'El so de r forta entre vocals s\'escriu amb el dígraf rr: terrassa.'},
+  {w:'te_a_a',s:'A la te_a_a hi ha moltes flors i herbes.',wShow:'terr_a',a:'ss',o:['ss','s','ç'],why:'El so de s sorda entre vocals s\'escriu amb el dígraf ss: terrassa.'},
+  {w:'p_tge',s:'En Guillem va dibuixar un p_tge amb molts colors.',wShow:'paisa_e',a:'tg',o:['tg','tj','j'],why:'Davant de e/i escrivim el dígraf tg en paraules com paisatge, formatge o viatge.'},
+  {w:'pinze_',s:'En Guillem va agafar el pinze_ per pintar.',a:'ll',o:['ll','l','ny'],why:'Pinzell acaba amb el dígraf ll.'},
+  {w:'_illem',s:'En _illem pinta vora la piscina.',a:'Gu',o:['Gu','G','Qu'],why:'Davant de e o i, el so de g suau s\'escriu amb el dígraf gu: Guillem, guitarra.'},
+  {w:'dibu_ar',s:'Va agafar el pinzell i va dibu_ar un paisatge.',a:'ix',o:['ix','x','tx'],why:'Entre vocals, el so de xava es representa amb el dígraf ix: dibuixar, caixa, peix.'},
+  {w:'església',s:'Sonava la campana de l\'església mentre saltava la granota.',mode:'detect',opts:['campana','granota','germà','cap d\'aquestes'],a:'cap d\'aquestes',why:'Molt vistaire! Ni campana, ni granota, ni germà porten cap dígraf.'},
+  {w:'co_e',s:'Hem pujat al co_e per anar d\'excursió.',a:'tx',o:['tx','x','ig'],why:'Al mig de paraula escrivim el dígraf tx: cotxe, motxilla, fletxa.'},
+  {w:'ma_',s:'Al mes de ma_ fem festa major i anem de passeig.',a:'ig',o:['ig','tx','g'],why:'A final de paraula, després de vocal, sovint escrivim el dígraf ig: maig, raig, passeig, roig.'},
+  {w:'hori_ó',s:'El sol s\'amaga per l\'hori_ó.',a:'tz',o:['tz','z','ss'],why:'El dígraf tz sona com a z sonora a horitzó, dotze o setze.'},
+  {w:'munta_a',s:'Vam pujar al cim de la munta_a.',a:'ny',o:['ny','ll','ni'],why:'El so palatal nasal s\'escriu amb el dígraf ny: muntanya, pinyol, banyera.'},
+  {w:'es_irol',s:'Un es_irol saltava de branca en branca.',a:'qu',o:['qu','c','gu'],why:'Davant de e o i, el so /k/ s\'escriu amb el dígraf qu: esquirol, paquet.'}
+];
+function digrafsHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  if(it.mode==='detect'){
+    const opts=`<div class="opts">${it.opts.map(o=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.a?'ok':''}" data-act="digPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+    let fb=done?`<div class="feedback ${st.ok?'ok':'no'}">${esc(it.why)}</div>`:(st.wrong?`<div class="feedback try">Recorda: un dígraf són dues lletres que fan un sol so (rr, ss, ll, ny, qu, gu, tx, tz, ig, tg).</div>`:'');
+    return `<div class="stage"><p class="muted">Pregunta trampa! Quina d'aquestes paraules té un <b>dígraf</b>?</p>${opts}${fb}${done?`<button class="btn" data-act="next">Següent</button>`:''}</div>`;
+  }
+  const pat=it.wShow||it.w;
+  const full=pat.replace('_',it.a);
+  const wDisp=esc(pat).replace('_',done?`<span class="hl">${esc(it.a)}</span>`:`<span class="gap">&nbsp;&nbsp;</span>`);
+  const opts=`<div class="opts">${it.o.map(o=>`<button class="opt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.a?'ok':''}" data-act="digPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+  let fb='';
+  if(st.ok) fb=`<div class="feedback ok">Molt bé! <b>${esc(full)}</b> porta el dígraf <b>${esc(it.a)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.over) fb=`<div class="feedback no">S'escriu <b>${esc(full)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.wrong) fb=`<div class="feedback try">Pensa quin dígraf fa aquest so en català!</div>`;
+  return `<div class="stage"><p class="muted">Completa la paraula amb el <b>dígraf</b> correcte:</p><p class="word big">${wDisp}</p><p class="sentence muted">${esc(it.s.replace(it.w,full))}</p>${opts}${fb}${done?`<button class="btn" data-act="next">Següent</button>`:''}</div>`;
+}
+function digPick(o){
+  const it=G.items[G.i], st=G.st; G.tries++;
+  if(o===it.a){st.ok=true;reward(G.tries===1,'digrafs')}
+  else{
+    st.wrong=(st.wrong||[]).concat(o);
+    if(G.tries>=2){st.over=true;miss('digrafs')}
+    else beep(false);
+  }
+  save(); renderGame();
+}
+
+/* --- 7. MATEMÀTIQUES: MATES ESTRELLA --- */
+const MATES_PROBLEMS = [
+  {q:'Al concert de la Mochi hi ha 6 files amb 8 cadires a cada fila. Si ja hi ha 40 fans asseguts, quantes cadires queden lliures?',ans:'8',o:['6','8','12','14'],why:'6 × 8 = 48 cadires en total. 48 − 40 = 8 cadires lliures.'},
+  {q:'Un sobre de photocards costa 40 estrelles. Si la Mochi en té 150 i compra 3 sobres, quantes estrelles li sobren?',ans:'30',o:['20','30','40','50'],why:'3 sobres × 40 = 120 estrelles. 150 − 120 = 30 estrelles li sobren.'},
+  {q:'Una excursió pel bosc dura 2 hores i mitja. Quants minuts són en total?',ans:'150',o:['120','130','150','180'],why:'Cada hora té 60 minuts: 60 + 60 + 30 = 150 minuts.'},
+  {q:'En Kyle té 24 pedres brillants i en vol posar la mateixa quantitat en 4 bandoleres. Quantes pedres van a cada bandolera?',ans:'6',o:['4','6','7','8'],why:'24 ÷ 4 = 6 pedres a cada bandolera.'},
+  {q:'La Mochi ha llegit 3/4 parts d\'un còmic de 40 pàgines. Quantes pàgines ha llegit?',ans:'30',o:['10','20','30','35'],why:'1/4 de 40 és 40 ÷ 4 = 10 pàgines. Per tant, 3/4 són 3 × 10 = 30 pàgines.'},
+  {q:'Quin és el perímetre d\'una cabanya quadrada si cada costat mesura 7 metres?',ans:'28 m',o:['14 m','21 m','28 m','49 m'],why:'Un quadrat té 4 costats iguals: 4 × 7 m = 28 m de perímetre.'}
+];
+function genCalcItem(){
+  const t=pick(['mult','missing','half']);
+  if(t==='mult'){
+    const a=3+(Math.random()*7|0), b=4+(Math.random()*6|0), c=2+(Math.random()*9|0);
+    const ans=a*b+c;
+    const opts=shuffle([...new Set([ans,ans+2,ans-2,a*b,ans+5])]).slice(0,4).map(String);
+    if(!opts.includes(String(ans))) opts[0]=String(ans);
+    return {q:`Calcula mentalment:  (${a} × ${b}) + ${c} = ?`,ans:String(ans),o:shuffle(opts),why:`Primer la multiplicació: ${a} × ${b} = ${a*b}, i després + ${c} = ${ans}.`};
+  }
+  if(t==='missing'){
+    const a=4+(Math.random()*6|0), b=3+(Math.random()*7|0), prod=a*b;
+    const opts=shuffle([...new Set([b,b+1,Math.max(2,b-1),b+2])]).slice(0,4).map(String);
+    return {q:`Quin número s'amaga a l'estrella?  ${a} × ⭐ = ${prod}`,ans:String(b),o:shuffle(opts),why:`Perquè ${a} × ${b} = ${prod} (o ${prod} ÷ ${a} = ${b}).`};
+  }
+  const base=(2+(Math.random()*8|0))*10;
+  const ans=base*3/2;
+  const opts=shuffle([ans,ans+5,ans-5,ans+10]).map(String);
+  return {q:`El doble de ${base} menys la meitat de ${base} és…`,ans:String(ans),o:opts,why:`El doble de ${base} és ${base*2}, i la meitat de ${base} és ${base/2}. ${base*2} − ${base/2} = ${ans}.`};
+}
+function buildMates(n){
+  const probs=shuffle(MATES_PROBLEMS).slice(0,Math.ceil(n/2));
+  const calcs=[...Array(n-probs.length)].map(()=>genCalcItem());
+  return shuffle(probs.concat(calcs));
+}
+function matesHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  const opts=`<div class="opts">${it.o.map(o=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.ans?'ok':''}" data-act="matesPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+  let fb='';
+  if(st.ok) fb=`<div class="feedback ok">Càlcul perfecte! <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.over) fb=`<div class="feedback no">El resultat era <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.wrong) fb=`<div class="feedback try">Torna-ho a comptar pas a pas!</div>`;
+  return `<div class="stage"><p class="muted">Repte matemàtic:</p><p class="sentence" style="font-size:26px">${esc(it.q)}</p>${opts}${fb}${done?`<button class="btn" data-act="next">Següent</button>`:''}</div>`;
+}
+function matesPick(o){
+  const it=G.items[G.i], st=G.st; G.tries++;
+  if(o===it.ans){st.ok=true;reward(G.tries===1,'mates')}
+  else{
+    st.wrong=(st.wrong||[]).concat(o);
+    if(G.tries>=2){st.over=true;miss('mates')}
+    else beep(false);
+  }
+  save(); renderGame();
+}
+
+/* --- 8. ANGLÈS: STAR ENGLISH --- */
+const ANGLES_BANK = [
+  {q:'Complete the sentence: "Mochi ___ wearing her pink headphones right now."',say:'Mochi is wearing her pink headphones right now.',ans:'is',o:['is','are','am','do'],why:'Amb "Mochi" (she) al Present Continuous fem servir "is" (Mochi is wearing…).'},
+  {q:'What do you use to find the North in the forest? 🧭',say:'A compass',ans:'A compass',o:['A compass','A jumper','A mushroom','A cabin'],why:'"Compass" vol dir brúixola en anglès (i "cabin" és cabanya!).'},
+  {q:'Complete the question: "___ did the explorers go yesterday?"',say:'Where did the explorers go yesterday?',ans:'Where',o:['Where','Who','What time','Whose'],why:'"Where" vol dir "On" (On van anar els exploradors ahir?).'},
+  {q:'Choose the right word: "There ___ some glowing mushrooms in the forest."',say:'There are some glowing mushrooms in the forest.',ans:'are',o:['are','is','has','wasn\'t'],why:'"Mushrooms" és plural (bolets), així que fem servir "There are".'},
+  {q:'How do you say "cabanya de fusta" in English? 🛖',say:'Wooden cabin',ans:'Wooden cabin',o:['Wooden cabin','Woollen jumper','Little notebook','Bright star'],why:'"Wooden cabin" és cabanya de fusta ("wool" és llana i "notebook" és llibreta).'},
+  {q:'Complete: "She ___ got a necklace with two pearls."',say:'She has got a necklace with two pearls.',ans:'has',o:['has','have','is','can'],why:'Amb "She / He / It" fem servir "has got" per dir que té alguna cosa.'},
+  {q:'Which word is the hypernym (category) for "pine, oak, fir"? 🌳',say:'Tree',ans:'Tree',o:['Tree','Flower','Tool','Weather'],why:'"Tree" (arbre) engloba pine (pi), oak (roure) i fir (avet)!'},
+  {q:'Complete: "Let\'s ___ the flashlight to see the path!" 🔦',say:'Let\'s turn on the flashlight to see the path!',ans:'turn on',o:['turn on','sleep in','eat up','listen to'],why:'"Turn on" vol dir encendre (encenguem la llanterna!).'}
+];
+function anglesHTML(){
+  const it=G.items[G.i], st=G.st, done=st.ok||st.over;
+  const opts=`<div class="opts">${it.o.map(o=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.ans?'ok':''}" data-act="anglesPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+  let fb='';
+  if(st.ok) fb=`<div class="feedback ok">Awesome! <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.over) fb=`<div class="feedback no">The right answer is <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
+  else if(st.wrong) fb=`<div class="feedback try">Try again! Read the sentence carefully.</div>`;
+  return `<div class="stage">
+    <button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="enSay" data-t="${esc(it.say)}">${IC.speaker}Listen in English</button>
+    <p class="sentence">${esc(it.q)}</p>${opts}${fb}${done?`<button class="btn" data-act="next">Next</button>`:''}
+  </div>`;
+}
+function anglesPick(o){
+  const it=G.items[G.i], st=G.st; G.tries++;
+  if(o===it.ans){st.ok=true;reward(G.tries===1,'angles')}
+  else{
+    st.wrong=(st.wrong||[]).concat(o);
+    if(G.tries>=2){st.over=true;miss('angles')}
+    else beep(false);
+  }
+  save(); renderGame();
+}
+
 function handle2(a,b){
+  if(a==='subjTab'){S.subjTab=b.dataset.s;save();renderHome();return true}
+  if(a==='setMissionSubj'){
+    const ns=b.dataset.s;
+    if(S.missionSubj!==ns){S.missionSubj=ns;if(S.missionDay!==TODAY())S.missionStep=0;save();renderHome()}
+    return true;
+  }
+  if(a==='esSay'){sayLang(b.dataset.t,'es',b.dataset.slow==='1');return true}
+  if(a==='enSay'){sayLang(b.dataset.t,'en',b.dataset.slow==='1');return true}
+  if(a==='toggleCheat'){G.st.cheat=!G.st.cheat;renderGame();return true}
+  if(a==='esDipType'){esDipType(b.dataset.t);return true}
+  if(a==='esDipSyl'){esDipSyl(b.dataset.s);return true}
+  if(a==='esHipPick'){esHipPick(b.dataset.o);return true}
+  if(a==='esPrecPick'){esPrecPick(b.dataset.o);return true}
+  if(a==='esDefStep1'){esDefStep1(b.dataset.o);return true}
+  if(a==='esDefStep2'){esDefStep2(+b.dataset.i);return true}
+  if(a==='esOraPick'){esOraPick(b.dataset.o);return true}
+  if(a==='digPick'){digPick(b.dataset.o);return true}
+  if(a==='matesPick'){matesPick(b.dataset.o);return true}
+  if(a==='anglesPick'){anglesPick(b.dataset.o);return true}
   if(a==='logicPick'){logicPick(+b.dataset.i);return true}
   if(a==='logicHint'){G.st.hint=true;renderGame();return true}
   if(a==='silTile'){const t=G.st.tiles.find(x=>x.id==b.dataset.id);const k=G.st.slots.indexOf(null);if(k<0||t.used)return true;t.used=true;G.st.slots[k]=t;G.st.marks=null;renderGame();return true}

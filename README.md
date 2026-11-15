@@ -2,13 +2,23 @@
 
 **Juga-hi:** https://xavikai.github.io/lletres-estrella/
 
-Joc per a tauleta per practicar l'ortografia en català (disortografia), amb una mascota, photocards i minijocs:
+Joc per a tauleta separat per **temàtiques i assignatures del curs** (Castellà, Català, Matemàtiques i Anglès), amb la mascota Mochi, photocards, vestidor i minijocs interactius:
 
-- **Ortografia:** Eco (dictat de fitxes), Foto-memòria, Detectiu de famílies, Trucs, Síl·labes boges, Paraules alienígenes (dictat de pseudoparaules)
-- **Arcade:** Cursa de lletres, Conquesta lila
-- **Llegir i escriure:** Karaoke lector, Talla-frases, Posa els punts
-- **Raonament:** Laboratori de patrons (sèries, matrius i balances)
-- **Diccionari visual** amb emojis, **llibreta d'errors** amb repàs espaiat i **zona de pares**
+- **🩷 Castellà (Unidad 2 · Barcanova + reptes de nivell):**
+  - **Diptongos e hiatos:** truc de vocals fortes i febles, classificació i separació en síl·labes (*aire, ciudad, caoba, día, rusgalía, vacío, reír, raíz, baúl, cereal…*).
+  - **Cajas de hiperónimos:** relaciona hipònims amb el seu hiperònim (*telar → máquina, sol → estrella, cabaña → construcción, hilo → hebra, turquesa → color, brisa → viento…*), completa famílies i caça l'intrús.
+  - **¡Fuera la palabra «cosa»! (Precisión léxica):** substitueix paraules comodí (*cosa, hacer, decir*) per vocabulari precís (*libreta, joya, setas, bandolera, construcción, fabricada, materiales…*).
+  - **Taller de definiciones:** construeix definicions pas a pas (1r l'hiperònim + 2n les característiques pròpies) per a *brújula, jersey, explorador, cabaña, telar, microscopio…*
+  - **Radar de oraciones:** diferencia **frase** (sense verb) i **oració** (amb verb) i classifica segons la intenció (**declarativa, interrogativa, exclamativa, imperativa, dubitativa**).
+- **🟣 Català:**
+  - **Ortografia i Dígrafs:** Caça-dígrafs (*rr, ss, ll, ny, qu, gu, tx, tz, ig, tg*), Eco (dictat de fitxes), Foto-memòria, Detectiu de famílies, Trucs (*-ava, -ia, m davant p/b*), Síl·labes boges, Paraules alienígenes.
+  - **Llegir, escriure i Arcade:** Karaoke lector, Talla-frases, Posa els punts, Cursa de lletres, Conquesta lila.
+- **🟢 Matemàtiques i Raonament:**
+  - **Mates Estrella:** càlcul mental àgil, números amagats i problemes del curs.
+  - **Laboratori de patrons:** sèries, matrius i balances d'equivalències.
+- **🟡 Anglès:**
+  - **Star English:** vocabulari i construcció de frases en anglès amb àudio.
+- **Diccionari visual** amb emojis, **llibreta d'errors** amb repàs espaiat, **cartes de truc/xuletes** i **zona de pares**.
 
 La lògica del joc és a `index.html`, sense dependències ni servidor propi. El progrés es desa al navegador (`localStorage`); a la Zona de pares es pot desar i recuperar una còpia.
 
