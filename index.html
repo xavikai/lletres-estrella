@@ -291,6 +291,9 @@ label{font-weight:700;font-size:15px;color:var(--muted);display:flex;flex-direct
 .defbox .step{color:var(--rosa);border-bottom:3px dotted var(--rosa)}
 .cheat{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:14px;text-align:left;max-width:600px;width:100%;font-size:16px;display:flex;flex-direction:column;gap:8px}
 .cheat b{color:var(--groc)}
+.fracbox{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:12px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;max-width:560px;width:100%}
+.fracwheels{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px}
+.fraccap{font-size:15px;color:var(--muted);font-weight:700}
 @media (prefers-reduced-motion:reduce){.dance{animation:none}}
 @media (prefers-reduced-motion:reduce){.bob,.jump,.pc.rare::after{animation:none}}
 </style>
@@ -3222,7 +3225,7 @@ const MATES_PROBLEMS = [
   {q:'Un sobre de photocards costa 40 estrelles. Si la Mochi en té 150 i compra 3 sobres, quantes estrelles li sobren?',ans:'30',o:['20','30','40','50'],why:'3 sobres × 40 = 120 estrelles. 150 − 120 = 30 estrelles li sobren.'},
   {q:'Una excursió pel bosc dura 2 hores i mitja. Quants minuts són en total?',ans:'150',o:['120','130','150','180'],why:'Cada hora té 60 minuts: 60 + 60 + 30 = 150 minuts.'},
   {q:'En Kyle té 24 pedres brillants i en vol posar la mateixa quantitat en 4 bandoleres. Quantes pedres van a cada bandolera?',ans:'6',o:['4','6','7','8'],why:'24 ÷ 4 = 6 pedres a cada bandolera.'},
-  {q:'La Mochi ha llegit 3/4 parts d\'un còmic de 40 pàgines. Quantes pàgines ha llegit?',ans:'30',o:['10','20','30','35'],why:'1/4 de 40 és 40 ÷ 4 = 10 pàgines. Per tant, 3/4 són 3 × 10 = 30 pàgines.'},
+  {q:'La Mochi ha llegit 3/4 parts d\'un còmic de 40 pàgines. Quantes pàgines ha llegit?',ans:'30',o:['10','20','30','35'],pie:{num:3,den:4,total:40,caption:'Formatget de 4 quarts: 3/4 de 40 pàgines'},why:'1/4 de 40 és 40 ÷ 4 = 10 pàgines. Per tant, 3/4 són 3 × 10 = 30 pàgines.'},
   {q:'Quin és el perímetre d\'una cabanya quadrada si cada costat mesura 7 metres?',ans:'28 m',o:['14 m','21 m','28 m','49 m'],why:'Un quadrat té 4 costats iguals: 4 × 7 m = 28 m de perímetre.'},
   {q:'Una escola de 5è fa una sortida amb 108 alumnes repartits en 3 autocars iguals. Quants alumnes van a cada autocar?',ans:'36',o:['32','34','36','38'],why:'108 ÷ 3 = 36 alumnes a cada autocar (30 × 3 = 90 i 6 × 3 = 18; 90 + 18 = 108).'},
   {q:'Al forn han fet 240 croissants i els posen en caixes de 6 unitats. Quantes caixes ompliran?',ans:'40',o:['30','40','45','60'],why:'240 ÷ 6 = 40 caixes.'},
@@ -3230,7 +3233,7 @@ const MATES_PROBLEMS = [
   {q:'Un tren recorre 90 km cada hora. Quants quilòmetres recorrerà en 3 hores i mitja?',ans:'315 km',o:['270 km','300 km','315 km','360 km'],why:'En 3 hores fa 90 × 3 = 270 km, i en mitja hora fa la meitat de 90 (45 km). 270 + 45 = 315 km.'},
   {q:'En una biblioteca hi ha 8 prestatgeries amb 25 llibres a cadascuna. Si se\'n presten 35, quants llibres hi queden?',ans:'165',o:['155','165','175','200'],why:'8 × 25 = 200 llibres en total. 200 − 35 = 165 llibres.'},
   {q:'Si repartim 50 caramels entre 6 amics a parts iguals, quants caramels sobren (quin és el residu)?',ans:'2',o:['0','2','4','8'],why:'6 × 8 = 48 caramels repartits, i 50 − 48 = 2 caramels que sobren.'},
-  {q:'Un dipòsit d\'aigua té una capacitat de 500 litres. Si està ple fins a les 3/5 parts, quants litres conté?',ans:'300 L',o:['100 L','200 L','300 L','400 L'],why:'1/5 de 500 és 500 ÷ 5 = 100 L. Per tant, 3/5 són 3 × 100 = 300 L.'},
+  {q:'Un dipòsit d\'aigua té una capacitat de 500 litres. Si està ple fins a les 3/5 parts, quants litres conté?',ans:'300 L',o:['100 L','200 L','300 L','400 L'],pie:{num:3,den:5,total:500,caption:'Pastís de 5 parts iguals: 3/5 de 500 L'},why:'1/5 de 500 és 500 ÷ 5 = 100 L. Per tant, 3/5 són 3 × 100 = 300 L.'},
   {q:'Les notes de la Mochi en tres reptes han estat 8, 9 i 10. Quina és la seva nota mitjana?',ans:'9',o:['8','8,5','9','9,5'],why:'Sumem els valors (8 + 9 + 10 = 27) i dividim entre 3: 27 ÷ 3 = 9.'},
   {q:'Una entrada al museu val 12 €, però avui fan un 50% de descompte. Quant costa l\'entrada avui?',ans:'6 €',o:['4 €','6 €','8 €','10 €'],why:'El 50% és la meitat: la meitat de 12 € és 6 €.'},
   {q:'En Guillem té 45 cromos i la seva cosina en té el doble menys 10. Quants cromos té la cosina?',ans:'80',o:['70','80','90','100'],why:'El doble de 45 és 90, i 90 − 10 = 80 cromos.'}
@@ -3286,7 +3289,8 @@ function matesHTML(){
   if(st.ok) fb=`<div class="feedback ok">Càlcul perfecte! <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.over) fb=`<div class="feedback no">El resultat era <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.wrong) fb=`<div class="feedback try">Torna-ho a comptar pas a pas!</div>`;
-  return `<div class="stage"><p class="muted">Repte matemàtic:</p><p class="sentence" style="font-size:26px">${esc(it.q)}</p>${opts}${fb}${done?`<button class="btn" data-act="next">Següent</button>`:''}</div>`;
+  const vis=it.pie?fracBoxHTML(it.pie,done||!!st.wrong):'';
+  return `<div class="stage"><p class="muted">Repte matemàtic:</p><p class="sentence" style="font-size:26px">${esc(it.q)}</p>${vis}${opts}${fb}${done?`<button class="btn" data-act="next">Següent</button>`:''}</div>`;
 }
 function matesPick(o){
   const it=G.items[G.i], st=G.st; G.tries++;
@@ -3301,42 +3305,108 @@ function matesPick(o){
 
 /* --- 7B. MATEMÀTIQUES: FRACCIONS, DECIMALS I PERCENTATGES (5è DE PRIMÀRIA) --- */
 const MAT_FRAC_BANK = [
-  {q:'Quant és 2/3 de 24 estrelles?',ans:'16',o:['8','12','16','18'],why:'Dividim entre el denominador i multipliquem pel numerador: (24 ÷ 3) × 2 = 8 × 2 = 16.'},
-  {q:'Quant és 3/5 de 45 minuts?',ans:'27',o:['9','18','27','36'],why:'(45 ÷ 5) × 3 = 9 × 3 = 27 minuts.'},
-  {q:'Quant és 4/7 de 35 cromos?',ans:'20',o:['15','20','25','28'],why:'(35 ÷ 7) × 4 = 5 × 4 = 20 cromos.'},
-  {q:'Quina d\'aquestes fraccions és EQUIVALENT a 1/2 (representa la meitat)?',ans:'4/8',o:['4/8','2/6','3/4','1/4'],why:'Si multipliquem numerador i denominador d\'1/2 per 4, obtenim 4/8 (4 és la meitat de 8).'},
-  {q:'Quina fracció és equivalent a 2/3?',ans:'4/6',o:['4/6','3/4','2/6','4/9'],why:'Multipliquem per 2 a dalt i a baix: (2×2)/(3×2) = 4/6.'},
-  {q:'Com s\'escriu la fracció decimal 7/10 en forma de nombre decimal?',ans:'0,7',o:['0,7','0,07','7,10','0,700'],why:'7 dècimes s\'escriu 0,7 (un sol decimal després de la coma).'},
-  {q:'Com s\'escriu 25/100 en forma de nombre decimal?',ans:'0,25',o:['0,25','2,5','0,025','25,0'],why:'25 centèsimes té dues xifres decimals: 0,25 (que també és igual a 1/4!).'},
-  {q:'A quin nombre decimal equival la fracció 3/4?',ans:'0,75',o:['0,75','0,25','0,50','3,4'],why:'1/4 és 0,25; per tant, 3/4 són 3 × 0,25 = 0,75.'},
-  {q:'Quin d\'aquests nombres decimals és el MÉS GRAN?',ans:'3,4',o:['3,4','3,38','3,09','3,399'],why:'Comparem les dècimes: 3,4 té 4 dècimes (3,400), que és més gran que 3 dècimes (3,38 i 3,399).'},
-  {q:'Quin és el resultat de sumar 2,4 + 1,35?',ans:'3,75',o:['3,75','3,39','2,75','3,85'],why:'Alineem les comes: 2,40 + 1,35 = 3,75.'},
-  {q:'Si d\'una pizza de 8 talls se\'n mengen 3, quina fracció de pizza QUEDA a la safata?',ans:'5/8',o:['5/8','3/8','5/5','8/5'],why:'La pizza sencera és 8/8. Si en mengem 3/8, en queden 8/8 − 3/8 = 5/8.'},
-  {q:'Calcula la suma de fraccions amb el mateix denominador:  2/9 + 5/9 = ?',ans:'7/9',o:['7/9','7/18','3/9','10/9'],why:'Quan tenen el mateix denominador, deixem el 9 i sumem els numeradors: 2 + 5 = 7 → 7/9.'},
-  {q:'Quant és el 25% de 80 euros?',ans:'20 €',o:['10 €','20 €','25 €','40 €'],why:'El 25% és el mateix que 1/4 part (la quarta part): 80 ÷ 4 = 20 €.'},
-  {q:'Quant és el 10% de 150 punts?',ans:'15',o:['10','15','25','50'],why:'Per calcular el 10% d\'un nombre, només cal dividir-lo entre 10: 150 ÷ 10 = 15.'},
-  {q:'Si arrodonim el nombre decimal 4,78 a les unitats més properes, quin nombre obtenim?',ans:'5',o:['4','4,7','5','4,8'],why:'Com que la xifra de les dècimes és 7 (5 o més), arrodonim cap amunt: 5.'},
-  {q:'Multiplica aquest decimal per 10:  3,45 × 10 = ?',ans:'34,5',o:['34,5','345','0,345','3,450'],why:'En multiplicar per 10, la coma es desplaça un lloc cap a la dreta: 34,5.'}
+  {q:'Quant és 2/3 de 24 estrelles?',ans:'16',o:['8','12','16','18'],pie:{num:2,den:3,total:24,caption:'Formatget dividit en 3 porcions iguals (agafem 2/3 de 24)'},why:'Dividim entre el denominador i multipliquem pel numerador: (24 ÷ 3) × 2 = 8 × 2 = 16.'},
+  {q:'Quant és 3/5 de 45 minuts?',ans:'27',o:['9','18','27','36'],pie:{num:3,den:5,total:45,caption:'Formatget dividit en 5 porcions iguals (agafem 3/5 de 45)'},why:'(45 ÷ 5) × 3 = 9 × 3 = 27 minuts.'},
+  {q:'Quant és 4/7 de 35 cromos?',ans:'20',o:['15','20','25','28'],pie:{num:4,den:7,total:35,caption:'Pastís dividit en 7 porcions iguals (agafem 4/7 de 35)'},why:'(35 ÷ 7) × 4 = 5 × 4 = 20 cromos.'},
+  {q:'Quant és 3/4 de 20 maduixes per decorar el pastís?',ans:'15',o:['5','10','15','18'],pie:{num:3,den:4,total:20,caption:'Pastís de 4 quarts amb 3 quarts marcats (3/4 de 20)'},why:'Cada quart del pastís porta 20 ÷ 4 = 5 maduixes. En 3 quarts n\'hi ha 3 × 5 = 15.'},
+  {q:'Mira el formatget: està dividit en 8 porcions iguals i n\'hem marcat 3. Quina fracció representa?',ans:'3/8',o:['3/8','5/8','3/5','8/3'],pie:{num:3,den:8,hideOptPie:true,caption:'Compta les porcions grogues i el total de porcions del formatget'},why:'El denominador (a baix) indica totes les porcions del formatget (8) i el numerador (a dalt) les porcions marcades (3): 3/8.'},
+  {q:'Quina d\'aquestes fraccions és EQUIVALENT a 1/2 (representa la mateixa porció de formatget)?',ans:'4/8',o:['4/8','2/6','3/4','1/4'],pie:{num:1,den:2,eq:[4,8],caption:'1/2 és la meitat del formatget: busca quina opció ocupa exactament la meitat'},why:'Si multipliquem numerador i denominador d\'1/2 per 4, obtenim 4/8 (4 porcions de 8 són la meitat del formatget).'},
+  {q:'Quina fracció representa la mateixa porció de pastís que 2/3 (és equivalent)?',ans:'4/6',o:['4/6','3/4','2/6','4/9'],pie:{num:2,den:3,eq:[4,6],caption:'2/3 del pastís: busca quina opció ocupa exactament el mateix tros'},why:'Multipliquem per 2 a dalt i a baix: (2×2)/(3×2) = 4/6.'},
+  {q:'Com s\'escriu la fracció decimal 7/10 en forma de nombre decimal?',ans:'0,7',o:['0,7','0,07','7,10','0,700'],pie:{num:7,den:10,caption:'Pastís de 10 dècimes amb 7 porcions marcades (7/10)'},why:'7 dècimes s\'escriu 0,7 (un sol decimal després de la coma).'},
+  {q:'Com s\'escriu 25/100 (un quart de pastís) en forma de nombre decimal?',ans:'0,25',o:['0,25','2,5','0,025','25,0'],pie:{num:1,den:4,sliceStr:'25%',caption:'25 de 100 és 1 quarta part del formatget (1/4 = 25/100)'},why:'25 centèsimes té dues xifres decimals: 0,25 (que també és igual a 1/4 del formatget!).'},
+  {q:'A quin nombre decimal equival la fracció 3/4 de formatget?',ans:'0,75',o:['0,75','0,25','0,50','3,4'],pie:{num:3,den:4,sliceStr:'0,25',caption:'3 quarts de formatget (cada quart val 0,25)'},why:'1/4 és 0,25; per tant, 3/4 són 3 × 0,25 = 0,75.'},
+  {q:'Quin d\'aquests nombres decimals és el MÉS GRAN?',ans:'3,4',o:['3,4','3,38','3,09','3,399'],pie:{wholes:3,num:4,den:10,caption:'3 pastissos sencers i 4 dècimes (3,4 = 3,400)'},why:'Comparem les dècimes: 3,4 té 4 dècimes (3,400), que és més gran que 3 dècimes (3,38 i 3,399).'},
+  {q:'Quin és el resultat de sumar 2,4 + 1,35?',ans:'3,75',o:['3,75','3,39','2,75','3,85'],pie:{wholes:3,num:3,den:4,caption:'En total sumen 3 pastissos sencers i 3 quarts (3,75)'},why:'Alineem les comes: 2,40 + 1,35 = 3,75.'},
+  {q:'Si d\'un pastís de 8 talls se\'n mengen 3, quina fracció de pastís QUEDA a la safata?',ans:'5/8',o:['5/8','3/8','5/5','8/5'],pie:{num:5,den:8,eaten:3,hideOptPie:true,caption:'Pastís de 8 talls: 3 talls menjats (buits) i 5 talls que queden'},why:'El pastís sencer és 8/8. Si en mengem 3/8, en queden 8/8 − 3/8 = 5/8.'},
+  {q:'Calcula la suma de porcions amb el mateix denominador:  2/9 + 5/9 = ?',ans:'7/9',o:['7/9','7/18','3/9','10/9'],pie:{num:2,num2:5,den:9,caption:'2 porcions grogues (2/9) + 5 porcions roses (5/9) en un pastís de 9 talls'},why:'Quan tenen el mateix denominador, deixem el 9 i sumem els numeradors: 2 + 5 = 7 → 7/9.'},
+  {q:'D\'un formatget dividit en 6 porcions iguals, la Mochi se\'n menja 2 i en Guillem 3. Quina fracció s\'han menjat en total?',ans:'5/6',o:['5/6','1/6','5/12','6/5'],pie:{num:2,num2:3,den:6,caption:'2 porcions grogues (2/6) + 3 porcions roses (3/6) del formatget de 6 parts'},why:'Sumem les porcions del mateix formatget: 2/6 + 3/6 = 5/6.'},
+  {q:'Un formatget té 8 porcions iguals. Si ens en mengem la meitat (4/8) i després 1 porció més (1/8), quina fracció hem menjat?',ans:'5/8',o:['5/8','3/8','2/8','6/8'],pie:{num:4,num2:1,den:8,caption:'La meitat són 4/8 (groc) + 1 porció més (1/8, rosa)'},why:'La meitat de 8 porcions són 4/8. Si hi sumem 1/8 més: 4/8 + 1/8 = 5/8.'},
+  {q:'Quant és el 25% de 80 euros?',ans:'20 €',o:['10 €','20 €','25 €','40 €'],pie:{num:1,den:4,total:80,sliceStr:'25%',caption:'El 25% és 1 quart (1/4) del formatget de 80 €'},why:'El 25% és el mateix que 1/4 part (la quarta part): 80 ÷ 4 = 20 €.'},
+  {q:'Quant és el 10% de 150 punts?',ans:'15',o:['10','15','25','50'],pie:{num:1,den:10,total:150,caption:'El 10% és 1 dècima part (1/10) del pastís de 150 punts'},why:'Per calcular el 10% d\'un nombre, només cal dividir-lo entre 10: 150 ÷ 10 = 15.'},
+  {q:'Si arrodonim el nombre decimal 4,78 a les unitats més properes, quin nombre obtenim?',ans:'5',o:['4','4,7','5','4,8'],pie:{wholes:4,num:8,den:10,caption:'4 pastissos sencers i 0,78 (gairebé 5 pastissos sencers!)'},why:'Com que la xifra de les dècimes és 7 (5 o més), arrodonim cap amunt: 5.'},
+  {q:'Multiplica aquest decimal per 10:  3,45 × 10 = ?',ans:'34,5',o:['34,5','345','0,345','3,450'],pie:{num:9,den:20,caption:'En multiplicar per 10, cada dècima passa a ser una unitat sencera (34,5)'},why:'En multiplicar per 10, la coma es desplaça un lloc cap a la dreta: 34,5.'}
 ];
+function fracPieSVG(num,den,{num2=0,eaten=0,sliceTxt='',size=136}={}){
+  const cx=80,cy=80,r=64;
+  let paths='',labels='';
+  const nTot=Math.max(1,Math.min(24,den));
+  for(let k=0;k<nTot;k++){
+    const a0=-Math.PI/2+(k*2*Math.PI)/nTot, a1=-Math.PI/2+((k+1)*2*Math.PI)/nTot;
+    const x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0);
+    const x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
+    const lg=(a1-a0)>Math.PI?1:0;
+    const d=nTot===1?`M ${cx} ${cy-r} A ${r} ${r} 0 1 1 ${cx} ${cy+r} A ${r} ${r} 0 1 1 ${cx} ${cy-r} Z`
+      :`M ${cx} ${cy} L ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${lg} 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z`;
+    const is1=k<num, is2=!is1&&k<num+num2, isEat=!is1&&!is2&&eaten>0&&k>=nTot-eaten;
+    const fill=is1?'#ffd66b':is2?'#ff74b8':isEat?'#1a102466':'#2e1c43';
+    const stroke=isEat?'#ffffff44':'#1a1024';
+    const dash=isEat?'stroke-dasharray="4 3"':'';
+    paths+=`<path d="${d}" fill="${fill}" stroke="${stroke}" stroke-width="2.5" stroke-linejoin="round" ${dash}/>`;
+    if((is1||is2)&&nTot<=8&&!sliceTxt){
+      const am=(a0+a1)/2, hx=cx+r*.42*Math.cos(am+.18), hy=cy+r*.42*Math.sin(am+.18);
+      paths+=`<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="${nTot<=4?4.5:3.2}" fill="${is1?'#e6ac27':'#d94b90'}" opacity=".55"/>`;
+    }
+    if(sliceTxt&&nTot<=10){
+      const am=(a0+a1)/2, tx=cx+r*(nTot<=4?.52:.62)*Math.cos(am), ty=cy+r*(nTot<=4?.52:.62)*Math.sin(am);
+      labels+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" dominant-baseline="central" fill="${is1||is2?'#1a1024':'#f7f0fd'}" font-family="Lexend,Nunito,sans-serif" font-weight="800" font-size="${nTot<=6?13:10.5}">${esc(sliceTxt)}</text>`;
+    }
+  }
+  return `<svg viewBox="0 0 160 160" width="${size}" height="${size}" role="img" aria-label="Formatget de porcions" style="flex:none;filter:drop-shadow(0 4px 10px #0006)">
+    <circle cx="${cx}" cy="${cy}" r="${r+7}" fill="#231533" stroke="#4d3569" stroke-width="2.5"/>
+    ${paths}${labels}
+    <circle cx="${cx}" cy="${cy}" r="3.2" fill="#1a1024"/>
+  </svg>`;
+}
+function fracBoxHTML(p,showVal){
+  if(!p) return '';
+  const perSlice=p.total&&showVal?String(p.total/p.den):(p.sliceStr||'');
+  let wheels='';
+  if(p.wholes){
+    for(let i=0;i<p.wholes;i++) wheels+=fracPieSVG(1,1,{size:66});
+    wheels+=`<span style="font-family:var(--display);font-size:26px;color:var(--groc)">+</span>`+fracPieSVG(p.num,p.den,{size:96});
+  }else if(p.eq&&showVal){
+    wheels=fracPieSVG(p.num,p.den,{size:120})+`<span style="font-family:var(--display);font-size:30px;color:var(--menta)">=</span>`+fracPieSVG(p.eq[0],p.eq[1],{size:120});
+  }else{
+    wheels=fracPieSVG(p.num,p.den,{num2:p.num2||0,eaten:p.eaten||0,sliceTxt:perSlice,size:136});
+  }
+  const sub=p.total?(showVal?`Cada porció val ${p.total} ÷ ${p.den} = ${p.total/p.den} → ${p.num} porcions = ${(p.total/p.den)*p.num}`:`Total del formatget: ${p.total} repartit en ${p.den} porcions iguals`):'';
+  return `<div class="fracbox">
+    <div class="fracwheels">${wheels}</div>
+    ${p.caption?`<span class="fraccap">🧀 ${esc(p.caption)}</span>`:''}
+    ${sub?`<span class="small" style="color:var(--menta);font-weight:800">${esc(sub)}</span>`:''}
+  </div>`;
+}
+function optPieHTML(o,hide){
+  if(hide) return esc(o);
+  const m=/^(\d+)\/(\d+)$/.exec(o.trim());
+  if(!m) return esc(o);
+  const n=+m[1], d=+m[2];
+  if(d<2||d>12||n>d) return esc(o);
+  return `<span style="display:inline-flex;align-items:center;gap:8px">${fracPieSVG(n,d,{size:44})}<span>${esc(o)}</span></span>`;
+}
 function buildMatFrac(n){
   return pickFresh(MAT_FRAC_BANK,n,'mat_frac');
 }
 function matFracHTML(){
   const it=G.items[G.i], st=G.st, done=st.ok||st.over;
   const cheat=st.cheat?`<div class="cheat">
-    <div>🍕 <b>Fracció d'un nombre:</b> Divideix pel denominador (a baix) i multiplica pel numerador (a dalt). Ex: <i>3/5 de 40 = (40 ÷ 5) × 3 = 24</i>.</div>
+    <div>🧀 <b>Porcions del formatget:</b> El <b>denominador</b> (a baix) diu en quantes parts iguals tallem el formatget; el <b>numerador</b> (a dalt) diu quantes porcions agafem.</div>
+    <div>🍕 <b>Fracció d'un nombre:</b> Divideix pel denominador (per saber quant val 1 porció) i multiplica pel numerador. Ex: <i>3/5 de 40 = (40 ÷ 5) × 3 = 24</i>.</div>
     <div>🔟 <b>Fraccions i decimals:</b> <i>1/2 = 0,5 = 50%</i> · <i>1/4 = 0,25 = 25%</i> · <i>3/4 = 0,75 = 75%</i> · <i>1/10 = 0,1 = 10%</i>.</div>
   </div>`:'';
   const optsList=st.opts||(st.opts=shuffle(it.o));
-  const opts=`<div class="opts">${optsList.map(o=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.ans?'ok':''}" data-act="matFracPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${esc(o)}</button>`).join('')}</div>`;
+  const hideOpt=it.pie&&it.pie.hideOptPie;
+  const opts=`<div class="opts">${optsList.map(o=>`<button class="opt wopt ${st.wrong&&st.wrong.includes(o)?'bad':''} ${done&&o===it.ans?'ok':''}" data-act="matFracPick" data-o="${esc(o)}" ${done||(st.wrong&&st.wrong.includes(o))?'disabled':''}>${optPieHTML(o,hideOpt)}</button>`).join('')}</div>`;
   let fb='';
   if(st.ok) fb=`<div class="feedback ok">Exacte! <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.over) fb=`<div class="feedback no">La resposta era <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
-  else if(st.wrong) fb=`<div class="feedback try">Pensa-ho bé! Pots obrir la xuleta de fraccions i decimals.</div>`;
+  else if(st.wrong) fb=`<div class="feedback try">Fixa't en les porcions del formatget! Ja hi veus quant val cada porció.</div>`;
+  const vis=fracBoxHTML(it.pie,done||!!st.wrong);
   return `<div class="stage">
     <div class="speak"><button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="toggleCheat">${st.cheat?'Amaga la xuleta':'💡 Veure truc de fraccions i decimals'}</button></div>
     ${cheat}
-    <p class="sentence" style="font-size:26px">${esc(it.q)}</p>${opts}${fb}
+    <p class="sentence" style="font-size:26px">${esc(it.q)}</p>
+    ${vis}${opts}${fb}
     ${done?`<button class="btn" data-act="next">Següent</button>`:''}
   </div>`;
 }
