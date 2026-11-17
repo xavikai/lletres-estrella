@@ -352,7 +352,7 @@ const ECO_BANK = [
   ['també','Davant de b, sempre m. I porta accent.','Jo també hi vull anar.'],
   ['temps','Davant de p, sempre m.','Avui no tinc temps.'],
   ['cavall','Amb ll al final.','El cavall corre pel prat.'],
-  ['preguntes','Amb qu/gu? No, amb gu davant u: preguntes.','Feia preguntes a la bruixa.'],
+  ['preguntes','Amb g davant de u i acabada en -es: preguntes.','Feia preguntes a la bruixa.'],
   ['estret','Família: estreta. Acaba en t.','El camí era molt estret.'],
   ['vespre','Amb v al principi.','El concert és a les set del vespre.'],
   ['escenari','Amb sc al mig: escenari.','La cantant puja a l\'escenari.'],
@@ -386,7 +386,7 @@ const ECO_BANK = [
   ['girafa','Amb g davant de i: girafa.','La girafa té el coll molt llarg.'],
   ['gimnàs','Amb g davant de i, mn i accent a la à.','Fem educació física al gimnàs.'],
   ['caçador','Família: caça. Amb ç davant de a.','El caçador seguia el rastre al bosc.'],
-  ['cirera','Amb c davant de i: cirera.','Al maig mengem cireres vermelles.'],
+  ['cirera','Amb c davant de i: cirera.','Aquella cirera vermella era molt dolça.'],
   ['pissarra','Amb ss i rr entre vocals!','La mestra escriu l\'esquema a la pissarra.'],
   ['professora','Amb ss entre vocals: professora.','La professora de música toca el piano.'],
   ['disfressa','Amb s després de consonant i ss entre vocals.','Quina disfressa portaràs per Carnaval?'],
@@ -439,7 +439,7 @@ const DET_BANK = [
   {p:'pl_visquejar',s:'A mitja tarda va començar a pl_visquejar.',a:'u',o:['o','u'],f:'pl[u]ja',c:'vocals'},
   {p:'ll_minós',s:'El rètol de l\'escenari és molt ll_minós.',a:'u',o:['o','u'],f:'ll[u]m',c:'vocals'},
   {p:'f_marada',s:'De la xemeneia sortia una gran f_marada.',a:'u',o:['o','u'],f:'f[u]m',c:'vocals'},
-  {p:'c_llerada',s:'Pren una c_llerada de xarop abans d\'anar a dormir.',a:'u',o:['o','u'],f:'c[u]llera',c:'vocals'},
+  {p:'s_car',s:'M\'agrada s_car el pa en el tomàquet.',a:'u',o:['o','u'],f:'s[u]c',c:'vocals'},
   {p:'b_sseta',s:'Guarda les monedes dins la b_sseta.',a:'o',o:['o','u'],f:'b[o]ssa',c:'vocals'},
   {p:'fl_risteria',s:'Hem comprat un ram a la fl_risteria.',a:'o',o:['o','u'],f:'fl[o]r',c:'vocals'},
   {p:'p_ixater',s:'El p_ixater ens ha recomanat el lluç fresc.',a:'e',o:['a','e'],f:'p[e]ix',c:'vocals'},
@@ -464,22 +464,22 @@ const DET_BANK = [
   {p:'pun_',s:'Posa un pun_ al final de la frase.',a:'t',o:['t','res'],f:'pun[t]a',c:'final'},
   {p:'mol_',s:'Estic mol_ contenta.',a:'t',o:['t','res'],f:'mol[t]a',c:'final'},
   {p:'llo_',s:'El llo_ udolava a la lluna plena.',a:'p',o:['p','b'],f:'llo[p]a',c:'final'},
-  {p:'tu_',s:'L\'aigua passa per aquest tu_ de plàstic.',a:'b',o:['p','b'],f:'tu[b]eria',c:'final'},
+  {p:'tu_',s:'L\'aigua passa per aquest tu_ de plàstic.',a:'b',o:['p','b'],f:'tu[b]ular',c:'final'},
   {p:'cu_',s:'El dau té forma de cu_.',a:'b',o:['p','b'],f:'cú[b]ic',c:'final'},
   {p:'xaro_',s:'El metge em va donar un xaro_ dolç.',a:'p',o:['p','b'],f:'xaro[p]ós',c:'final'},
   {p:'for_',s:'Aquest vent bufa molt for_.',a:'t',o:['t','d'],f:'for[t]alesa',c:'final'},
   {p:'pon_',s:'Vam creuar el riu pel pon_ de pedra.',a:'t',o:['t','d'],f:'pon[t]et',c:'final'},
   {p:'fon_',s:'Hem begut aigua fresca de la fon_.',a:'t',o:['t','d'],f:'fon[t]ana',c:'final'},
   {p:'tar_',s:'S\'ha fet molt tar_ i hem de marxar.',a:'d',o:['t','d'],f:'tar[d]ana',c:'final'},
-  {p:'cal_',s:'Vigila que el brou està molt cal_.',a:'d',o:['t','d'],f:'cal[d]ós',c:'final'},
+  {p:'acor_',s:'Tots els companys hem arribat a un acor_.',a:'d',o:['t','d'],f:'acor[d]ar',c:'final'},
   {p:'profun_',s:'Aquest pou és molt profun_.',a:'d',o:['t','d'],f:'profun[d]itat',c:'final'},
   {p:'líqui_',s:'El gel es fon i es torna líqui_.',a:'d',o:['t','d'],f:'liqui[d]esa',c:'final'},
-  {p:'se_',s:'El drap ja està ben se_.',a:'c',o:['c','g'],f:'se[c]ar',c:'final'},
+  {p:'se_',s:'El drap ja està ben se_.',a:'c',o:['c','g'],f:'asse[c]ar',c:'final'},
   {p:'fos_',s:'A l\'hivern es fa fos_ molt d\'hora.',a:'c',o:['c','g'],f:'fos[c]or',c:'final'},
   {p:'bos_',s:'Vam buscar pinyes dins del bos_.',a:'c',o:['c','g'],f:'bos[c]ós',c:'final'},
   {p:'amar_',s:'El pomelo té un gust una mica amar_.',a:'g',o:['c','g'],f:'amar[g]or',c:'final'},
   {p:'fan_',s:'Després de la pluja el camí és ple de fan_.',a:'g',o:['c','g'],f:'fan[g]ós',c:'final'},
-  {p:'abri_',s:'Agafa l\'abri_ abans de sortir al carrer.',a:'g',o:['c','g'],f:'abri[g]ar',c:'final'},
+  {p:'diàle_',s:'Els personatges tenen un diàle_ molt divertit.',a:'g',o:['c','g'],f:'dialo[g]ar',c:'final'},
   {p:'càsti_',s:'Aquell personatge va rebre un càsti_.',a:'g',o:['c','g'],f:'casti[g]ar',c:'final'}
 ];
 
@@ -498,7 +498,7 @@ const RULES = {
     ['Els alumnes aca_en els deures ara mateix.','b','Acaben és present (l\'arrel d\'acabar porta b): acabo, acabes, acaben! En canvi, acabaven porta b i v.'],
     ['Nosaltres tro_em molts bolets a la tardor.','b','Trobem és present del verb trobar (l\'arrel porta b).']]},
   ia:{name:'Truc -ia',title:'Els verbs en -ia van amb i, no amb ll',ex:'feia · queia · veien · creia',o:['i','ll'],items:[
-    ['La Bruna fe_a preguntes.','i'],['L\'ocell que_a de la branca.','i'],['Ve_en les plantes al passar.','i'],
+    ['La Bruna fe_a preguntes.','i'],['L\'ocell que_a de la branca.','i'],['Ve_en les plantes en passar.','i'],
     ['Cre_a que plouria.','i'],['Els ballarins que_en a terra.','i'],['Tothom re_a amb el vídeo.','i'],
     ['L\'àvia de_a sempre la veritat.','i'],['Des del balcó es ve_a el mar.','i'],
     ['Els excursionistes du_en una brúixola.','i'],['Nosaltres fè_em un pastís de poma.','i'],
@@ -529,8 +529,8 @@ const RULES = {
     ['La _elatina de maduixa és boníssima.','g'],['El _egant de la festa major ballava.','g'],
     ['Vam veure una pel·lícula de mà_ia.','g'],['Posa una mica de _el al got d\'aigua.','g'],
     ['Dissabte _ugarem un partit de bàsquet.','j'],['La plu_a va regar tots els camps.','j'],
-    ['El _ardiner poda els rosers.','j'],['M\'agrada molt el su_c de taron_a.','j'],
-    ['Hem menjat mon_etes amb botifarra.','j'],['La tortu_a camina a poc a poc.','j'],
+    ['El _ardiner poda els rosers.','j'],['M\'agrada molt el suc de taron_a.','j'],
+    ['Hem guardat les _oguines a l\'armari.','j'],['Neteja la taula amb l\'espon_a humida.','j'],
     ['Posa\'t el _ersei que avui refresca!','j','Atenció, excepció! Jersei, injecció, majestat i jeroglífic van amb J davant de e!'],
     ['La infermera li va posar una in_ecció.','j','Excepció del grup -jecc-: injecció i projecte s\'escriuen amb j davant de e!'],
     ['Els egipcis escrivien amb _eroglífics.','j','Excepció! Jeroglífic s\'escriu amb j davant de e.']]},
@@ -649,7 +649,7 @@ const PCARDS = [
   {id:'berenar',name:'Berenar dolç',serie:'Quotidiana',quote:'Pa amb xocolata després de classe.',bg:['#fbd38d','#ff9ad1'],w:['llac','collar'],s:1,mood:'happy'},
   /* ✨ Rara Brillant (r:1) */
   {id:'nit',name:'Nit d\'estrelles',serie:'Cosmos',quote:'Cada encert fa brillar un estel nou.',bg:['#3b2a6b','#9f7aea'],w:['corona'],s:3,r:1,mood:'star'},
-  {id:'concert',name:'Concert',serie:'Idol',quote:'Tot l\'estadi canta a l\'hora!',bg:['#ff74b8','#ffd66b'],w:['micro','ulleres'],s:3,r:1,mood:'happy'},
+  {id:'concert',name:'Concert',serie:'Idol',quote:'Tot l\'estadi canta alhora!',bg:['#ff74b8','#ffd66b'],w:['micro','ulleres'],s:3,r:1,mood:'happy'},
   {id:'gira',name:'Gira',serie:'Idol',quote:'Pròxima parada: Tòquio, Seül i Barcelona!',bg:['#7ff0c9','#ffd66b'],w:['auris','llac'],s:3,r:1,mood:'wink'},
   {id:'encore',name:'Encore',serie:'Idol',quote:'Una última cançó abans d\'apagar els llums!',bg:['#ff9a8a','#c9a7ff'],w:['micro','collar'],s:2,r:1,mood:'happy'},
   {id:'comeback',name:'Comeback',serie:'Idol',quote:'Nou àlbum, nou estil i més energia!',bg:['#1a1024','#ff74b8'],w:['corona','micro'],s:3,r:1,mood:'cool'},
@@ -682,12 +682,12 @@ const PET_CARDS = [
   {id:'mimi',name:'Mimi',title:'La Conilleta Lunar',e1:'🐰',e2:'🌙',elem:'Cosmos',bg:['#6b46c1','#fed7e2'],r:1,power:'Viu a la Lluna i domina tots els diftongs i hiats.'},
   {id:'nori',name:'Nori',title:'La Guineu Àrtica',e1:'🦊',e2:'❄️',elem:'Gel',bg:['#2b6cb0','#bee3f8'],r:1,power:'El seu pelatge canvia a l\'hivern i li encanten les lectures en anglès.'},
   {id:'sora',name:'Sora',title:'El Colibrí Elèctric',e1:'🐦',e2:'⚡',elem:'Vent',bg:['#285e61','#f6e05e'],r:1,power:'Bateja les ales a 100 paraules per minut al Karaoke!'},
-  {id:'poko',name:'Poko',title:'L\'Ós Rentador Enginyer',e1:'🦝',e2:'🧭',elem:'Saviesa',bg:['#4a5568','#9ae6b4'],r:1,power:'Construeix balances i resol matrius al Laboratori de patrons.'},
+  {id:'poko',name:'Poko',title:'L\'Os Rentador Enginyer',e1:'🦝',e2:'🧭',elem:'Saviesa',bg:['#4a5568','#9ae6b4'],r:1,power:'Construeix balances i resol matrius al Laboratori de patrons.'},
   {id:'bibi',name:'Bibi',title:'El Drac de Biblioteca',e1:'🐲',e2:'📖',elem:'Foc',bg:['#276749','#fbd38d'],r:2,power:'Custodia els diccionaris antics i detesta la paraula «cosa».'},
   {id:'astro',name:'Astro',title:'El Gosset Astronauta',e1:'🐶',e2:'🚀',elem:'Cosmos',bg:['#1a202c','#9f7aea'],r:2,power:'Calcula distàncies en quilòmetres, fraccions i percentatges.'},
   {id:'coral',name:'Coral',title:'El Cavallet d\'Atles',e1:'🦄',e2:'🌈',elem:'Mar',bg:['#702459','#81e6d9'],r:2,power:'Galopa per la Cursa de lletres sense fallar cap porta.'},
-  {id:'fenix',name:'Fènix',title:'L\'Ocell d\'Or',e1:'🦅',e2:'🔥',elem:'Foc',bg:['#742a2a','#ffd66b'],r:3,power:'company llegendari que protegeix la teva ratxa amb foc daurat.'},
-  {id:'cosmos',name:'Nébula',title:'La Balena Estel·lar',e1:'🐋',e2:'✨',elem:'Cosmos',bg:['#1a1024','#ffd66b'],r:3,power:'Neda entre constel·lacions i coneix totes les llengües del món.'},
+  {id:'fenix',name:'Fènix',title:'L\'Ocell d\'Or',e1:'🦅',e2:'🔥',elem:'Foc',bg:['#742a2a','#ffd66b'],r:3,power:'Company llegendari que protegeix la teva ratxa amb foc daurat.'},
+  {id:'cosmos',name:'Nèbula',title:'La Balena Estel·lar',e1:'🐋',e2:'✨',elem:'Cosmos',bg:['#1a1024','#ffd66b'],r:3,power:'Neda entre constel·lacions i coneix totes les llengües del món.'},
   {id:'lyra',name:'Lyra',title:'La Reina dels Cristalls',e1:'🦊',e2:'👑',elem:'Llegenda',bg:['#3a2556','#7ff0c9'],r:3,power:'Domina les 4 assignatures de 5è amb perfecció absoluta.'}
 ];
 
@@ -703,7 +703,7 @@ const BADGE_CARDS = [
   {id:'b_ca_ort',name:'Estrella del Català',ico:'🟣',desc:'Suma 30 encerts als jocs d\'ortografia i gramàtica catalana.',check:s=>{const v=sumStats(['eco','ca_acen','ca_ss','ca_gram','ava','ia','mp','gj','cz','vocals','final','digrafs'],s.stats||{});return {on:v>=30,cur:Math.min(v,30),max:30}}},
   {id:'b_digrafs',name:'Domadora de Dígrafs',ico:'🧩',desc:'Encerta 15 reptes de Caça-dígrafs i Síl·labes.',check:s=>{const v=sumStats(['digrafs','sil'],s.stats||{});return {on:v>=15,cur:Math.min(v,15),max:15}}},
   {id:'b_mates',name:'Calculadora Humana',ico:'🟢',desc:'Suma 25 encerts entre Mates Estrella, Fraccions i Geometria.',check:s=>{const v=sumStats(['mates','mat_frac','mat_geo'],s.stats||{});return {on:v>=25,cur:Math.min(v,25),max:25}}},
-  {id:'b_logic',name:' Ment Brillant',ico:'🔮',desc:'Suma 15 encerts al Laboratori de patrons (sèries, matrius i balances).',check:s=>{const v=sumStats(['serie','matriu','balanca'],s.stats||{});return {on:v>=15,cur:Math.min(v,15),max:15}}},
+  {id:'b_logic',name:'Ment Brillant',ico:'🔮',desc:'Suma 15 encerts al Laboratori de patrons (sèries, matrius i balances).',check:s=>{const v=sumStats(['serie','matriu','balanca'],s.stats||{});return {on:v>=15,cur:Math.min(v,15),max:15}}},
   {id:'b_angles',name:'Star Polyglot',ico:'🟡',desc:'Aconsegueix 20 encerts als jocs d\'Anglès (Star English, Nature i Grammar).',check:s=>{const v=sumStats(['angles','en_nat','en_gram'],s.stats||{});return {on:v>=20,cur:Math.min(v,20),max:20}}},
   {id:'b_kara',name:'Veu de Vellut',ico:'🎙️',desc:'Arriba a 60 paraules/minut al Karaoke lector.',check:s=>{const w=(s.kara&&s.kara.wpm)||45;return {on:w>=60,cur:Math.min(w,60),max:60}}},
   {id:'b_conq',name:'Reina del Mapa',ico:'🗺️',desc:'Conquereix almenys el 40% del mapa a Conquesta lila.',check:s=>{const c=s.conqBest||0;return {on:c>=40,cur:Math.min(c,40),max:40}}},
@@ -1152,7 +1152,7 @@ function buildItems(kind,n){
     return shuffle(main.concat(contrast)).map(x=>({rule:k,s:x[0],a:x[1],why:x[2]||''}));
   }
   if(kind==='talla') return pickFresh(TALLA_BANK,n,'talla').map(s=>({s}));
-  if(kind==='sil') return pickFresh(SIL_BANK,n,'sil').map(([x,f])=>({syl:x.split('·'),w:x.replace(/·/g,''),f}));
+  if(kind==='sil') return pickFresh(SIL_BANK,n,'sil').map(([x,f])=>({syl:x.split('·'),w:x.replace(/·/g,(_,i,s)=>s[i-1]==='l'&&s[i+1]==='l'?'·':''),f}));
   if(kind==='punts') return pickFresh(PUNTS_BANK,n,'punts').map(sents=>({sents}));
   if(kind==='kara'){const K=karaState();const ss=SONGS.slice().sort((a,b)=>(K.best[a.id]||0)-(K.best[b.id]||0));return [ss[Math.random()*Math.min(4,ss.length)|0]]}
   if(kind==='cursa'||kind==='conq') return [{}];
@@ -1471,7 +1471,7 @@ const RULE_CARDS_INFO = {
   gj:{subj:'ca',name:RULES.gj.name,title:RULES.gj.title,ex:RULES.gj.ex,tip:'Recorda les excepcions amb J davant de E: jersei, injecció, majestat, jeroglífic i projecte.'},
   cz:{subj:'ca',name:RULES.cz.name,title:RULES.cz.title,ex:RULES.cz.ex,tip:'Mai no posem trencada (ç) davant de E o I: cirera, ceba, cel, feliços / felices.'},
   vocals:{subj:'ca',name:'Català · Truc família (vocals)',title:'Si una vocal àtona (a/e, o/u) no sona clara, busca una paraula germana on sigui tònica',ex:'lloc → localitzar · forn → forner · pedra → pedregada',tip:'A la paraula germana curta (lloc, forn, pedra, vent, fusta, munt), la vocal porta el cop de veu i es sent claríssima.'},
-  final:{subj:'ca',name:'Català · Truc lletra muda',title:'Si el final no sona o dubtes entre p/b, t/d, c/g, allarga la paraula amb un derivat',ex:'gent → gentada · fred → fredor · llarg → llargada · tub → tuberia',tip:'Després de N o L al final (punt, molt, alt, camp, llarg, blanc) sovint hi ha una consonant muda.'},
+  final:{subj:'ca',name:'Català · Truc lletra muda',title:'Si el final no sona o dubtes entre p/b, t/d, c/g, allarga la paraula amb un derivat',ex:'gent → gentada · fred → fredor · llarg → llargada · tub → tubular',tip:'Després de N o L al final (punt, molt, alt, camp, llarg, blanc) sovint hi ha una consonant muda.'},
   digrafs:{subj:'ca',name:'Català · Truc dígrafs',title:'Dues lletres que fan un sol so: rr, ss, ll, l·l, ny, qu, gu, tx, tz, ig, tg, tj, ix',ex:'ter·ras·sa · col·le·gi · ca·vall · mun·ta·nya · pa·quet',tip:'NO es separen mai: ll, ny, qu, gu, ig. SÍ que es separen en síl·labes: rr, ss, l·l, tx, tg, tj, tz, ix, sc.'},
   sil:{subj:'ca',name:'Català · Síl·labes i diftongs',title:'Les vocals fortes (a, e, o) es separen entre elles; amb i/u formen diftong',ex:'te·a·tre · ci·èn·ci·a · ai·gua · es·qui·rol',tip:'Quan separes a final de ratlla, no deixis mai cap vocal sola al principi o al final de línia.'},
   mates:{subj:'mat',name:'Mates · Jerarquia d\'operacions',title:'1r els parèntesis ( ), 2n multiplicacions i divisions (×, ÷), 3r sumes i restes (+, −)',ex:'(12 − 4) × 3 = 8 × 3 = 24 · 6 × 8 + 5 = 48 + 5 = 53',tip:'Per multiplicar per 10 o 100 un nombre enter, afegeix un o dos zeros. Si és decimal, corre la coma cap a la dreta.'},
@@ -1669,20 +1669,20 @@ const SIL_BANK = [
   ['au·ri·cu·lars','La Mochi porta uns auriculars lila.'],['or·ques·tra',"L'orquestra toca molt fort."],
   ['ca·mi·na·ven','Caminaven per un camí estret.'],['e·mo·ci·ó','Es comunicaven amb emoció.'],
   ['bi·bli·o·te·ca','Llegim novel·les a la biblioteca.'],['he·li·còp·ter',"L'helicòpter vola sobre el bosc."],
-  ['pe·l·lí·cu·la','Hem vist una pel·lícula molt divertida.'],['tran·quil·li·tat','Al prat hi havia molta tranquil·litat.'],
+  ['pel·lí·cu·la','Hem vist una pel·lícula molt divertida.'],['tran·quil·li·tat','Al prat hi havia molta tranquil·litat.'],
   ['pis·sar·ra','La mestra escriu a la pissarra.'],['pro·fes·so·ra','La professora explica el problema.'],
   ['for·mat·ge',"M'agrada l'entrepà de formatge."],['pai·sat·ge','Des del cim es veu un gran paisatge.'],
-  ['re·llot·ge','El rellotge marca les cinc en punt.'],['hor·it·zó','El vaixell desapareix per l\'horitzó.'],
+  ['re·llot·ge','El rellotge marca les cinc en punt.'],['ho·rit·zó','El vaixell desapareix per l\'horitzó.'],
   ['es·qui·rol',"L'esquirol s'enfila al pi."],['me·ra·ve·lla','Aquesta cova és una meravella.'],
   ['es·com·bra','Passa l\'escombra per la terrassa.'],['in·jec·ci·ó','La infermera prepara la injecció.'],
   ['hos·pi·tal','El metge treballa a l\'hospital.'],['ci·èn·ci·a','Fem un experiment de ciència.'],
-  ['pa·ci·èn·ci·a','Fes el trencaclosques amb paciència.'],['hi·stò·ri·a',"L'avi ens explica una història."],
+  ['pa·ci·èn·ci·a','Fes el trencaclosques amb paciència.'],['his·tò·ri·a',"L'avi ens explica una història."],
   ['au·to·mò·bil',"L'automòbil s'atura al semàfor."],['te·lè·fon','Sona el telèfon de la cuina.'],
-  ['qu·i·lò·me·tre','Falta un quilòmetre per arribar al refugi.'],['ma·te·mà·ti·ques','Resolem reptes de matemàtiques.'],
+  ['qui·lò·me·tre','Falta un quilòmetre per arribar al refugi.'],['ma·te·mà·ti·ques','Resolem reptes de matemàtiques.'],
   ['ge·o·gra·fi·a','Busquem rius al mapa de geografia.'],['di·no·sau·re','El museu té l\'esquelet d\'un dinosaure.'],
   ['ca·len·da·ri','Marca la data del concert al calendari.'],['es·pec·ta·cle','L\'espectacle de màgia va ser genial.'],
   ['am·bu·làn·ci·a',"L'ambulància porta la sirena encesa."],['ex·cur·si·ó','Demà anem d\'excursió al Montseny.'],
-  ['in·stru·ment','El violí és un instrument de corda.'],['tem·pes·ta','Després de la tempesta surt l\'arc de Sant Martí.'],
+  ['ins·tru·ment','El violí és un instrument de corda.'],['tem·pes·ta','Després de la tempesta surt l\'arc de Sant Martí.'],
   ['ar·qui·tec·te',"L'arquitecte ha dissenyat el pont nou."],['sub·ma·rí','El submarí explora el fons del mar.']
 ];
 const PUNTS_BANK = [
@@ -1711,7 +1711,7 @@ const SONGS = [
   {id:'llum',t:'Llum lila',l:["Quan s'apaguen els llums de l'escenari,","el meu cor fa bum com un tambor.","Canto fort i el públic m'acompanya,","som estrelles que brillen de color."],
     q:['Com fa el cor quan s\'apaguen els llums?',['Bum, com un tambor','Plora molt fluix','Es queda adormit'],0]},
   {id:'assaig',t:"L'assaig",l:["Cada tarda assajàvem a la sala.","Saltàvem, ballàvem i rèiem molt.","Quan una passa ens sortia malament,","la tornàvem a provar sense por."],
-    q:['Què feien quan una passa sortia malament?',['La tornaven a provar','Se\'n anaven a casa','Deixaven de ballar'],0]},
+    q:['Què feien quan una passa sortia malament?',['La tornaven a provar','Se n\'anaven a casa','Deixaven de ballar'],0]},
   {id:'munt',t:'Mochi a la muntanya',l:["La Mochi va pujar a la muntanya.","Buscava bolets entre els arbres alts.","Va trobar una cascada preciosa","i uns ocells que cantaven contents."],
     q:['Què buscava la Mochi?',['Pedres de colors','Bolets','El seu gat'],1]},
   {id:'diumenge',t:'Diumenge en família',l:["Diumenge dinem amb els avis i els cosins.","L'àvia fa una truita que fa bona olor.","Després juguem al jardí fins que es fa fosc,","i tornem a casa cansats però contents."],
@@ -1774,7 +1774,8 @@ function misspell(w){
     if(c==='o'&&i>0&&i<w.length-1) sub(i,1,'u');
     if(c==='u'&&i>0&&i<w.length-1&&p!=='q'&&p!=='g') sub(i,1,'o');
   }
-  out.delete(w); const a=[...out]; return a.length?pick(a):null;
+  [w,'vella','bellesa','pont','punt','mol','fon','gen','vallaven'].forEach(x=>out.delete(x));
+  const a=[...out]; return a.length?pick(a):null;
 }
 function wordPool(){
   const s=new Set(ECO_BANK.map(b=>b[0]));
@@ -2465,7 +2466,7 @@ const ES_ORT_BANK = [
   {w:'prohi_ido',s:'Está prohi_ido encender fuego en el bosque.',a:'b',o:['b','v'],why:'Viene del verbo prohibir (verbos en -bir van con B, salvo hervir, servir y vivir) y lleva h intercalada.'},
   {w:'_urbuja',s:'La _urbuja de jabón subió hasta el techo.',a:'b',o:['b','v'],why:'Las palabras que empiezan por bu-, bur- y bus- se escriben siempre con B (burbuja, bufanda, buscar).'},
   {w:'creati_o',s:'Has hecho un dibujo muy creati_o.',a:'v',o:['b','v'],why:'Los adjetivos terminados en -avo, -ava, -eve, -ivo, -iva se escriben con V (creativo, nuevo, suave, octavo).'},
-  {w:'andú_o',wShow:'andu_o',s:'El explorador andu_o durante tres horas por el sendero.',a:'v',o:['b','v'],why:'El pretérito perfecto simple de andar, estar y tener va con V: anduve, anduvo, estuve, tuvo (excepto había/hubo).'},
+  {w:'andu_o',s:'El explorador andu_o durante tres horas por el sendero.',a:'v',o:['b','v'],why:'El pretérito perfecto simple de andar, estar y tener va con V: anduve, anduvo, estuve, tuvo (excepto había/hubo).'},
   {w:'esta_ais',s:'¿Dónde esta_ais cuando empezó a llover?',a:'b',o:['b','v'],why:'Estabais es pretérito imperfecto (-aba, -abais): va con B. En cambio, «estuvisteis» va con V.'},
   {w:'prote_er',s:'Debemos prote_er la naturaleza y los bosques.',a:'g',o:['g','j'],why:'Los verbos terminados en -ger y -gir se escriben con G delante de E/I (proteger, elegir, dirigir), excepto tejer y crujir.'},
   {w:'te_er',s:'En la antigüedad usaban el telar para te_er.',a:'j',o:['g','j'],why:'¡Excepción! Tejer y crujir son las dos grandes excepciones de los verbos en -ger/-gir y se escriben con J.'},
@@ -2474,7 +2475,7 @@ const ES_ORT_BANK = [
   {w:'li_ero',s:'Este abrigo de plumas es muy cálido y li_ero.',a:'g',o:['g','j'],why:'Las palabras terminadas en -gero, -gera, -gión se escriben con G (ligero, exagerar, región).'},
   {w:'_uella',s:'Encontramos la _uella de un lobo en el barro.',a:'h',o:['h','nada'],why:'Todas las palabras que empiezan por hie- y hue- se escriben con H inicial (huella, hueso, hielo, hierba, huérfano).'},
   {w:'_ielo',s:'El lago se cubrió de _ielo en pleno invierno.',a:'h',o:['h','nada'],why:'Empieza por el diptongo ie- (hie-): siempre lleva H (hielo, hierba, hiena, hierro).'},
-  {w:'_a venido',s:'Mi prima ya _a venido del entrenamiento.',a:'ha',o:['ha','a'],why:'Lleva H porque es del verbo HABER (va delante de un participio: venido, comido, visto). Prueba: «han venido».'},
+  {w:'_ venido',s:'Mi prima ya _ venido del entrenamiento.',a:'ha',o:['ha','a'],why:'Lleva H porque es del verbo HABER (va delante de un participio: venido, comido, visto). Prueba: «han venido».'},
   {w:'Voy _ buscar',s:'Voy _ buscar la brújula a la tienda de campaña.',a:'a',o:['a','ha'],why:'Va sin H porque es la preposición «a» delante de un infinitivo (buscar). No puedes decir «*han buscar».'},
   {w:'capa_es',s:'Ellos son capa_es de resolver cualquier enigma.',a:'c',o:['c','z','s'],why:'Las palabras que terminan en -Z en singular (capaz, pez, luz, voz) forman su plural en -CES con C (capaces, peces, luces).'},
   {w:'atribu_ó',s:'El jurado le atribu_ó el primer premio del concurso.',a:'y',o:['y','ll'],why:'En los verbos cuyo infinitivo no tiene ni LL ni Y (atribuir, caer, leer, oír), las formas con ese sonido se escriben con Y (atribuyó, cayó, leyó, oyó).'},
@@ -2921,7 +2922,7 @@ const ES_CAT_BANK = [
   {q:'Elige la palabra homófona correcta: «El fontanero cambió el ___ de cobre del lavabo.»',ans:'tubo (con b)',o:['tubo (con b)','tuvo (con v)'],why:'«Tubo» con B es el cilindro hueco; «tuvo» con V es el pasado del verbo tener.'},
   {q:'Elige la palabra homófona correcta: «Ayer mi equipo ___ mucha suerte en la final.»',ans:'tuvo (con v)',o:['tuvo (con v)','tubo (con b)'],why:'Viene del verbo tener (pretérito perfecto simple: tuve, tuviste, tuvo), por eso se escribe con V.'},
   {q:'Elige la palabra correcta: «Saltaron la ___ de madera del jardín.»',ans:'valla (con ll)',o:['valla (con ll)','vaya (con y)','baya (con b y y)'],why:'«Valla» (con V y LL) es la cerca o vallado; «vaya» (con Y) es del verbo ir; «baya» (con B) es un fruto del bosque.'},
-  {q:'Elige la palabra correcta: «Ya ___ terminado la maqueta del volcán.»',ans:'hecho (con h)',o:['hecho (con h)','echo (sin h)'],why:'«Hecho» con H es el participio del verbo HACER (va con haber: he hecho, ha hecho). «Echo» sin H es del verbo echar.'},
+  {q:'Elige la palabra correcta: «Ya he ___ la maqueta del volcán.»',ans:'hecho (con h)',o:['hecho (con h)','echo (sin h)'],why:'«Hecho» con H es el participio del verbo HACER (va con haber: he hecho, ha hecho). «Echo» sin H es del verbo echar.'},
   {q:'¿Qué tipo de sustantivo es «bosque» o «bandada» (nombra en singular a un grupo de elementos)?',ans:'Sustantivo colectivo',o:['Sustantivo colectivo','Sustantivo propio','Adjetivo calificativo','Verbo infinitivo'],why:'Un sustantivo colectivo nombra en singular a un conjunto de seres u objetos (bosque = conjunto de árboles, rebaño, constelación).'},
   {q:'¿En qué tiempo verbal está la forma «habían descubierto»?',ans:'Pretérito pluscuamperfecto (pasado)',o:['Pretérito pluscuamperfecto (pasado)','Presente','Futuro simple','Condicional'],why:'«Habían descubierto» es una forma compuesta del pasado (había + participio).'}
 ];
@@ -2963,8 +2964,8 @@ function esCatPick(o){
 /* --- 6. CATALÀ: CAÇA-DÍGRAFS (rr, ss, ll, l·l, ny, qu, gu, tx, tz, ig, tg, tj, ix) --- */
 const DIGRAFS_BANK = [
   {w:'te_assa',s:'La te_assa de la casa del meu germà petit està plena de flors.',a:'rr',o:['rr','r','ss'],why:'El so de r forta entre vocals s\'escriu amb el dígraf rr: terrassa.'},
-  {w:'te_a_a',s:'A la te_a_a hi ha moltes flors i herbes.',wShow:'terr_a',a:'ss',o:['ss','s','ç'],why:'El so de s sorda entre vocals s\'escriu amb el dígraf ss: terrassa.'},
-  {w:'p_tge',s:'En Guillem va dibuixar un p_tge amb molts colors.',wShow:'paisa_e',a:'tg',o:['tg','tj','j'],why:'Davant de e/i escrivim el dígraf tg en paraules com paisatge, formatge o viatge.'},
+  {w:'terra_a',s:'A la terra_a hi ha moltes flors i herbes.',a:'ss',o:['ss','s','ç'],why:'El so de s sorda entre vocals s\'escriu amb el dígraf ss: terrassa.'},
+  {w:'paisa_e',s:'En Guillem va dibuixar un paisa_e amb molts colors.',a:'tg',o:['tg','tj','j'],why:'Davant de e/i escrivim el dígraf tg en paraules com paisatge, formatge o viatge.'},
   {w:'pinze_',s:'En Guillem va agafar el pinze_ per pintar.',a:'ll',o:['ll','l','ny'],why:'Pinzell acaba amb el dígraf ll.'},
   {w:'_illem',s:'En _illem pinta vora la piscina.',a:'Gu',o:['Gu','G','Qu'],why:'Davant de e o i, el so de g suau s\'escriu amb el dígraf gu: Guillem, guitarra.'},
   {w:'dibu_ar',s:'Va agafar el pinzell i va dibu_ar un paisatge.',a:'ix',o:['ix','x','tx'],why:'Entre vocals, el so de xava es representa amb el dígraf ix: dibuixar, caixa, peix.'},
@@ -3010,7 +3011,8 @@ function digrafsHTML(){
   if(st.ok) fb=`<div class="feedback ok">Molt bé! <b>${esc(full)}</b> porta el dígraf <b>${esc(it.a)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.over) fb=`<div class="feedback no">S'escriu <b>${esc(full)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.wrong) fb=`<div class="feedback try">Pensa quin dígraf fa aquest so en català!</div>`;
-  return `<div class="stage"><p class="muted">Completa la paraula amb el <b>dígraf</b> correcte:</p><p class="word big">${wDisp}</p><p class="sentence muted">${esc(it.s.replace(it.w,full))}</p>${opts}${fb}${done?`<button class="btn" data-act="next">Següent</button>`:''}</div>`;
+  const sDisp=esc(it.s).replace(esc(it.w),wDisp);
+  return `<div class="stage"><p class="muted">Completa la paraula amb el <b>dígraf</b> correcte:</p><p class="word big">${wDisp}</p><p class="sentence muted">${sDisp}</p>${opts}${fb}${done?`<button class="btn" data-act="next">Següent</button>`:''}</div>`;
 }
 function digPick(o){
   const it=G.items[G.i], st=G.st; G.tries++;
@@ -3025,28 +3027,28 @@ function digPick(o){
 
 /* --- 6B. CATALÀ: ACCENTS I DIÈRESI (5è DE PRIMÀRIA) --- */
 const CA_ACEN_BANK = [
-  {q:'Com s\'escriu correctament aquesta paraula aguda? (ca·[mí])',ans:'camí',o:['camí','cami','camì'],why:'És aguda acabada en vocal (-i), per tant porta accent tancat: camí.'},
-  {q:'Com s\'escriu correctament aquesta paraula aguda? (ca·[fè])',ans:'cafè',o:['cafè','café','cafe'],why:'És aguda acabada en vocal (-e) amb so obert: cafè porta accent greu (obert).'},
-  {q:'Com s\'escriu correctament aquesta paraula aguda? (au·to·[bús])',ans:'autobús',o:['autobús','autobus','autobùs'],why:'És aguda i acaba en -us (una de les 12 terminacions: a, e, i, o, u, as, es, is, os, us, en, in): porta accent.'},
-  {q:'Com s\'escriu correctament aquesta paraula aguda? (ca·ta·[là])',ans:'català',o:['català','catalá','catala'],why:'En català la lletra A només pot portar accent greu (obert): català, demà, sofà.'},
+  {q:'Com s\'escriu correctament aquesta paraula aguda? (ca·[mi])',ans:'camí',o:['camí','cami','camì'],why:'És aguda acabada en vocal (-i), per tant porta accent tancat: camí.'},
+  {q:'Com s\'escriu correctament aquesta paraula aguda? (ca·[fe])',ans:'cafè',o:['cafè','café','cafe'],why:'És aguda acabada en vocal (-e) amb so obert: cafè porta accent greu (obert).'},
+  {q:'Com s\'escriu correctament aquesta paraula aguda? (au·to·[bus])',ans:'autobús',o:['autobús','autobus','autobùs'],why:'És aguda i acaba en -us (una de les 12 terminacions: a, e, i, o, u, as, es, is, os, us, en, in): porta accent.'},
+  {q:'Com s\'escriu correctament aquesta paraula aguda? (ca·ta·[la])',ans:'català',o:['català','catalá','catala'],why:'En català la lletra A només pot portar accent greu (obert): català, demà, sofà.'},
   {q:'Com s\'escriu correctament aquesta paraula aguda? (pa·[per])',ans:'paper',o:['paper','papèr','papér'],why:'És aguda però acaba en -R (no és cap de les 12 terminacions), així que NO porta accent.'},
   {q:'Com s\'escriu correctament aquesta paraula aguda? (a·ni·[mal])',ans:'animal',o:['animal','animàl'],why:'És aguda acabada en -L: no porta accent.'},
   {q:'Com s\'escriu correctament aquesta paraula aguda? (en·[ten])',ans:'entén',o:['entén','enten','entèn'],why:'És aguda acabada en -EN (amb e tancada): porta accent tancat (entén, encén).'},
-  {q:'Com s\'escriu correctament aquesta paraula plana? ([plà]·tan)',ans:'plàtan',o:['plàtan','platan','plátan'],why:'És plana i acaba en -N (no acaba ni en vocal, ni en vocal+s, ni en -en/-in): porta accent a la à.'},
-  {q:'Com s\'escriu correctament aquesta paraula plana? (te·[lè]·fon)',ans:'telèfon',o:['telèfon','telefon','teléfon'],why:'És plana acabada en -N i la e sona oberta: telèfon.'},
+  {q:'Com s\'escriu correctament aquesta paraula plana? ([pla]·tan)',ans:'plàtan',o:['plàtan','platan','plátan'],why:'És plana i acaba en -N (no acaba ni en vocal, ni en vocal+s, ni en -en/-in): porta accent a la à.'},
+  {q:'Com s\'escriu correctament aquesta paraula plana? (te·[le]·fon)',ans:'telèfon',o:['telèfon','telefon','teléfon'],why:'És plana acabada en -N i la e sona oberta: telèfon.'},
   {q:'Com s\'escriu correctament aquesta paraula plana? (e·[xa]·men)',ans:'examen',o:['examen','exàmen'],why:'És plana i acaba en -EN: les planes acabades en -en o -in NO s\'accentuen (en canvi, en plural «exàmens» sí que porta accent!).'},
-  {q:'Com s\'escriu correctament en plural aquesta paraula plana? (e·[xà]·mens)',ans:'exàmens',o:['exàmens','examens'],why:'«Exàmens» acaba en -ens (que no és cap de les 12 terminacions), per tant la paraula plana SÍ que porta accent!'},
-  {q:'Com s\'escriu correctament aquesta paraula plana? (di·[fí]·cil)',ans:'difícil',o:['difícil','dificil','difìcil'],why:'És plana acabada en -L i la I sempre porta accent tancat: difícil, fàcil, útil.'},
-  {q:'Com s\'escriu correctament aquesta paraula plana? ([cò]·mo·de)',ans:'còmode',o:['còmode','comode','cómode'],why:'Atenció? Té 3 síl·labes i la tònica és l\'antepenúltima ([cò]·mo·de): és ESDRÚIXOLA i totes porten accent!'},
-  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? ([mú]·si·ca)',ans:'música',o:['música','musica','mùsica'],why:'És esdrúixola (totes s\'accentuen) i la U sempre porta accent tancat: música.'},
-  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? (his·[tò]·ri·a)',ans:'història',o:['història','historia','história'],why:'Hi·stò·ri·a és esdrúixola amb o oberta: porta accent greu (ò).'},
-  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? (ci·[èn]·ci·a)',ans:'ciència',o:['ciència','ciencia','ciéncia'],why:'És esdrúixola amb e oberta: ciència, paciència, experiència.'},
-  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? (fa·[mí]·li·a)',ans:'família',o:['família','familia','famìlia'],why:'És esdrúixola i la I sempre porta accent tancat: família.'},
+  {q:'Com s\'escriu correctament en plural aquesta paraula plana? (e·[xa]·mens)',ans:'exàmens',o:['exàmens','examens'],why:'«Exàmens» acaba en -ens (que no és cap de les 12 terminacions), per tant la paraula plana SÍ que porta accent!'},
+  {q:'Com s\'escriu correctament aquesta paraula plana? (di·[fi]·cil)',ans:'difícil',o:['difícil','dificil','difìcil'],why:'És plana acabada en -L i la I sempre porta accent tancat: difícil, fàcil, útil.'},
+  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? ([co]·mo·de)',ans:'còmode',o:['còmode','comode','cómode'],why:'Té 3 síl·labes i la tònica és l\'antepenúltima (cò·mo·de): és esdrúixola i totes porten accent (aquí obert: ò).'},
+  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? ([mu]·si·ca)',ans:'música',o:['música','musica','mùsica'],why:'És esdrúixola (totes s\'accentuen) i la U sempre porta accent tancat: música.'},
+  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? (his·[to]·ri·a)',ans:'història',o:['història','historia','história'],why:'His·tò·ri·a és esdrúixola amb o oberta: porta accent greu (ò).'},
+  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? (ci·[en]·ci·a)',ans:'ciència',o:['ciència','ciencia','ciéncia'],why:'És esdrúixola amb e oberta: ciència, paciència, experiència.'},
+  {q:'Com s\'escriu correctament aquesta paraula esdrúixola? (fa·[mi]·li·a)',ans:'família',o:['família','familia','famìlia'],why:'És esdrúixola i la I sempre porta accent tancat: família.'},
   {q:'Tria l\'opció correcta amb dièresi o sense: «La nostra ___ ens ha portat maduixes.»',ans:'veïna',o:['veïna','veina','veína'],why:'«Veïna» porta dièresi a la ï per indicar que no forma diftong amb la e (ve-ï-na, és plana acabada en vocal i no pot portar accent).'},
   {q:'Tria l\'opció correcta: «Per postres menjarem un gotim de ___.»',ans:'raïm',o:['raïm','raim','raím'],why:'«Raïm» és aguda acabada en -m (no pot portar accent segons les regles), per això porta dièresi per trencar el diftong (ra-ïm).'},
   {q:'Tria l\'opció correcta: «El ___ camina pel gel de l\'Antàrtida.»',ans:'pingüí',o:['pingüí','pinguí','pingüi'],why:'Porta dièresi a la ü perquè soni la u en el grup güi, i accent a la í perquè és aguda acabada en vocal!'},
   {q:'Tria l\'opció correcta: «A l\'escola aprenem diverses ___.»',ans:'llengües',o:['llengües','llengues','llengúes'],why:'Porta dièresi a la ü (llen-gües) perquè la u de «gu» s\'ha de pronunciar davant de e/i (com a aigües, paraigües).'},
-  {q:'Tria l\'accent diacrític correcte: «El meu germà té ___ d\'anar al dentista.»',ans:'por (sense accent)',o:['por (sense accent)','pòr (amb accent)'],why:'«Por» no porta accent. Els diacrítics principals són: té (verb), mà, sòl (terra), son/són, pel/pèl, sí, més, bé, ús, os/ós.'},
+  {q:'Tria l\'accent diacrític correcte: «El meu germà té ___ d\'anar al dentista.»',ans:'por (sense accent)',o:['por (sense accent)','pòr (amb accent)'],why:'«Por» no porta accent. Els diacrítics principals són: té (verb), mà, sòl (terra), son/són, pel/pèl, sí, més, bé, ús, món, déu, què.'},
   {q:'Tria l\'opció correcta (accent diacrític): «Ells ___ molt bons amics des de petits.»',ans:'són (amb accent)',o:['són (amb accent)','son (sense accent)'],why:'«Són» del verb ser porta accent diacrític per diferenciar-lo de «la son» (ganes de dormir).'},
   {q:'Tria l\'opció correcta (accent diacrític): «Em vull prendre una tassa de ___ calent.»',ans:'te (sense accent)',o:['te (sense accent)','té (amb accent)'],why:'La beguda «el te» va sense accent; en canvi, «ell té» (del verb tenir) porta accent tancat!'}
 ];
@@ -3066,12 +3068,13 @@ function caAcenHTML(){
   if(st.ok) fb=`<div class="feedback ok">Molt bé! <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.over) fb=`<div class="feedback no">La resposta correcta és <b>${esc(it.ans)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.wrong) fb=`<div class="feedback try">Pensa si és aguda, plana o esdrúixola i mira com acaba!</div>`;
+  const qDisp=esc(it.q).replace(/\[(.+?)\]/,'<span class="hl">$1</span>');
   return `<div class="stage">
     <div class="speak">
       <button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="toggleCheat">${st.cheat?'Amaga el truc':'💡 Veure regles d\'accents i dièresi'}</button>
     </div>
     ${cheat}
-    <p class="sentence">${esc(it.q)}</p>
+    <p class="sentence">${qDisp}</p>
     ${opts}${fb}
     ${done?`<button class="btn" data-act="next">Següent</button>`:''}
   </div>`;
@@ -3097,15 +3100,15 @@ const CA_SS_BANK = [
   {w:'prin_esa',s:'La prin_esa del conte vivia en una torre.',a:'c',o:['c','ç','s','ss'],why:'Davant de E, I escrivim C per al so de S sorda: princesa, cirera, ceba, cinema.'},
   {w:'for_ut',s:'L\'hèrcules de la fira era molt for_ut.',a:'ç',o:['ç','c','ss','s'],why:'Davant de A, O, U escrivim Ç (ve de força): forçut, llaços, dolços.'},
   {w:'belle_a',s:'La belle_a d\'aquell paisatge ens va deixar bocabadats.',a:'s',o:['s','ss','z','ç'],why:'Els sufixos -esa (bellesa, riquesa, vellesa, saviesa) tenen so de S sonora entre vocals i s\'escriuen amb una sola S!'},
-  {w:'riq_esa',wShow:'rique_a',s:'La veritable rique_a és tenir bons amics.',a:'s',o:['s','ss','z'],why:'El sufix -esa (riquesa, tristesa, pobresa) sempre va amb una sola S.'},
+  {w:'rique_a',s:'La veritable rique_a és tenir bons amics.',a:'s',o:['s','ss','z'],why:'El sufix -esa (riquesa, tristesa, pobresa) sempre va amb una sola S.'},
   {w:'disfre_a',s:'Ja tinc a punt la disfre_a de Carnaval.',a:'ss',o:['ss','s','ç'],why:'Entre vocals sona S sorda (forta), per tant s\'escriu amb doble S: disfressa.'},
   {w:'esmor_ar',s:'A les deu sortim al pati per esmor_ar.',a:'z',o:['z','s','ss'],why:'Sona S sonora després de la consonant r: esmorzar, esmorzo.'},
   {w:'hori_ó',s:'Vèiem un veler blanc a l\'hori_ó.',a:'tz',o:['tz','z','ss'],why:'Horitzó, dotze, tretze i setze porten el dígraf TZ.'},
   {w:'pla_a',s:'A l\'estiu fem castells de sorra a la pla_a.',a:'tj',o:['tj','tg','j','g'],why:'Davant de A, O, U escrivim el dígraf TJ: platja, mitja, lletja, corretja.'},
   {w:'via_e',s:'El via_e amb tren fins a París va ser emocionant.',a:'tg',o:['tg','tj','g','j'],why:'Davant de E, I escrivim el dígraf TG: viatge, formatge, paisatge, rellotge, metge.'},
-  {w:'me_icina',wShow:'me_e',s:'El me_e de l\'hospital li va curar la ferida.',a:'tg',o:['tg','tj','j'],why:'Davant de E escrivim TG: metge, metgessa, jutge.'},
+  {w:'me_e',s:'El me_e de l\'hospital li va curar la ferida.',a:'tg',o:['tg','tj','j'],why:'Davant de E escrivim TG: metge, metgessa, jutge.'},
   {w:'desi_ar',s:'Et volem desi_ar un feliç aniversari!',a:'tj',o:['tj','tg','j','g'],why:'Com que ve de desig, davant de A escrivim TJ: desitjar (i davant de E, desitges amb TG!).'},
-  {w:'bo_a',s:'Feia un vent tan fort que semblava una tarda bo_a.',a:'j',o:['j','tj','g','tg'],why:'Atenció! Boig, roig i mig fan el femení amb una sola J: boja, roja, mitja (només mitja porta tj!).'},
+  {w:'bo_a',s:'Feia un vent tan fort que semblava una tarda bo_a.',a:'j',o:['j','tj','g','tg'],why:'Atenció! Boig i roig fan el femení amb una sola J (boja, roja), a diferència de mig, que fa mitja amb TJ!'},
   {w:'ro_a',s:'Una rosella ro_a destacava enmig del camp de blat.',a:'j',o:['j','tj','g'],why:'Els derivats de roig i boig s\'escriuen amb J/G (roja, rojos, enrogir), no amb tj/tg!'},
   {w:'_ersei',s:'Posa\'t el _ersei blau que avui fa fred.',a:'j',o:['j','g','tg'],why:'Excepció! Jersei, injecció, majestat i jeroglífic s\'escriuen amb J davant de E.'},
   {w:'_imnàstica',s:'Avui tenim classe de _imnàstica al pavelló.',a:'g',o:['g','j','gu'],why:'Davant de E, I escrivim G: gimnàstica, girafa, gerani, gelat.'},
@@ -3134,6 +3137,7 @@ function caSsHTML(){
   if(st.ok) fb=`<div class="feedback ok">Excel·lent! S'escriu <b>${esc(full)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.over) fb=`<div class="feedback no">S'escriu <b>${esc(full)}</b>.<br>${esc(it.why)}</div>`;
   else if(st.wrong) fb=`<div class="feedback try">Escolta bé com sona i mira quines lletres té al voltant!</div>`;
+  const sDisp=esc(it.s).replace(esc(it.w),wDisp);
   return `<div class="stage">
     <div class="speak">
       <button class="btn alt small" style="min-height:42px;padding:0 14px;font-size:16px" data-act="toggleCheat">${st.cheat?'Amaga la xuleta':'💡 Veure taula de la S i G/J'}</button>
@@ -3141,7 +3145,7 @@ function caSsHTML(){
     ${cheat}
     <p class="muted">Completa la paraula amb la grafia correcta:</p>
     <p class="word big">${wDisp}</p>
-    <p class="sentence muted">${esc(it.s.replace(it.w,full))}</p>
+    <p class="sentence muted">${sDisp}</p>
     ${opts}${fb}
     ${done?`<button class="btn" data-act="next">Següent</button>`:''}
   </div>`;
@@ -3180,7 +3184,7 @@ const CA_GRAM_BANK = [
 function caGramHTML(){
   const it=G.items[G.i], st=G.st, done=st.ok||st.over;
   const cheat=st.cheat?`<div class="cheat">
-    <div>apostrof <b>L'apòstrof (l', d'):</b> S'apostrofa davant vocal o h muda (<i>l'escola, l'hivern, l'illa</i>), <b>EXCEPTE</b> «la» i «de» davant de <b>i, u àtones</b> (<i>la universitat, la indústria, la història</i>), <b>la una</b> (hora), <b>la ira</b> i davant de i/u consonàntica (<i>el iogurt, de ioga</i>).</div>
+    <div>✍️ <b>L'apòstrof (l', d'):</b> S'apostrofa davant vocal o h muda (<i>l'escola, l'hivern, l'illa</i>), <b>EXCEPTE</b> «la» i «de» davant de <b>i, u àtones</b> (<i>la universitat, la indústria, la història</i>), <b>la una</b> (hora), <b>la ira</b> i davant de i/u consonàntica (<i>el iogurt, de ioga</i>).</div>
     <div>🔗 <b>Contraccions:</b> <b>a+el = al</b> · <b>de+el = del</b> · <b>per+el = pel</b> (però si es pot apostrofar, s'apostrofa: <i>a l'escola, de l'arbre, per l'aire</i>).</div>
     <div>❓ <b>Per què / Perquè:</b> <b>Per què</b> (separat) per preguntar · <b>Perquè</b> (junt) per respondre o donar la causa.</div>
   </div>`:'';
@@ -3466,7 +3470,7 @@ const EN_NAT_BANK = [
   {q:'🌲 Plants & Trees: What do we call the tough outer skin that covers a tree trunk?',say:'Bark',ans:'Bark',o:['Bark','Grass','Petal','Dew'],why:'"Bark" és l\'escorça de l\'arbre (curiositat: també vol dir bordar!).'},
   {q:'🍃 Plants & Trees: Complete: "In autumn, the ___ change colour and fall from the trees."',say:'In autumn, the leaves change colour and fall from the trees.',ans:'leaves',o:['leaves','roots','trunks','stones'],why:'"Leaves" és el plural irregular de "leaf" (fulla → fulles).'},
   {q:'🐿️ Plants & Trees: What is the nut of an oak tree (roure) that squirrels love to eat?',say:'An acorn',ans:'An acorn',o:['An acorn','A pine cone','A cactus','A fern'],why:'"An acorn" és una gla o aglà (el fruit del roure, "oak tree").'},
-  {q:'🌲 Plants & Trees: What drops from pine trees and holds their seeds inside woody scales?',say:'A pine cone',ans:'A pine cone',o:['A pine cone','A mushroom','Adaisy','A pebble'],why:'"A pine cone" és una pinya dels pins ("pine trees").'},
+  {q:'🌲 Plants & Trees: What drops from pine trees and holds their seeds inside woody scales?',say:'A pine cone',ans:'A pine cone',o:['A pine cone','A mushroom','A daisy','A pebble'],why:'"A pine cone" és una pinya dels pins ("pine trees").'},
   {q:'🟢 Plants & Trees: Which soft, green carpet-like plant grows on damp rocks and tree trunks in shady forests?',say:'Moss',ans:'Moss',o:['Moss','Sand','Bark','Frost'],why:'"Moss" és la molsa que creix a les roques i troncs humits.'},
   {q:'🌿 Plants & Trees: Which forest plant has feathery green leaves (fronds) and no flowers?',say:'A fern',ans:'A fern',o:['A fern','A rose','A cactus','An oak'],why:'"A fern" és una falguera.'},
   {q:'🌻 Plants & Trees: What do you plant in the soil so a new flower or tree can grow?',say:'Seeds',ans:'Seeds',o:['Seeds','Thorns','Clouds','Feathers'],why:'"Seeds" són les llavors i "soil" és la terra o sòl on creixen les plantes.'},

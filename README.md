@@ -1,6 +1,6 @@
 # Training Mochi
 
-**Juga-hi:** https://xavikai.github.io/lletres-estrella/
+**Juga-hi:** https://training-mochi.pages.dev/ (o https://xavikai.github.io/lletres-estrella/)
 
 Joc per a tauleta separat per **temàtiques i assignatures del curs** (Castellà, Català, Matemàtiques i Anglès), amb la mascota Mochi, photocards, vestidor i minijocs interactius:
 

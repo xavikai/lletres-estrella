@@ -1,4 +1,4 @@
-const CACHE = 'training-mochi-v1';
+const CACHE = 'training-mochi-v2';
 const APP_FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', event => {
