@@ -1,4 +1,4 @@
-const CACHE = 'lletres-estrella-v2';
+const CACHE = 'training-mochi-v1';
 const APP_FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', event => {
@@ -8,7 +8,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
   event.waitUntil(Promise.all([
-    caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('lletres-estrella-') && key !== CACHE).map(key => caches.delete(key)))),
+    caches.keys().then(keys => Promise.all(keys.filter(key => (key.startsWith('lletres-estrella-') || key.startsWith('training-mochi-')) && key !== CACHE).map(key => caches.delete(key)))),
     self.clients.claim()
   ]));
 });
